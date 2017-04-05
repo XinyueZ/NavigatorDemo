@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public final class NavigationEntries {
-	@SerializedName("children") private List<Entry> mEntries;
+	@SerializedName("navigationEntries") private List<Entry> mEntries;
 
 	public NavigationEntries(List<Entry> entries) {
 		mEntries = entries;

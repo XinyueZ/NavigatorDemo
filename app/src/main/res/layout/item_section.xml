@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="entry"
+            type="com.demo.navigator.ds.Entry"/>
+    </data>
+
+    <com.demo.navigator.utils.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlueGrey"
+        android:orientation="vertical"
+        android:padding="@dimen/common_material_padding_margin_medium">
+
+        <TextView
+            android:id="@+id/label_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@{entry.getLabel()}"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimaryDark"
+            tools:text="Section"/>
+    </com.demo.navigator.utils.MaterialRippleLayout>
+</layout>

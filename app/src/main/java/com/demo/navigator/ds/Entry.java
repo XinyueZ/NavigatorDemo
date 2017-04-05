@@ -2,13 +2,10 @@ package com.demo.navigator.ds;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by xzhao on 05.04.17.
- */
-
-public final class Entry {
+public final class Entry implements Serializable {
 	@SerializedName("type") private String mType;
 	@SerializedName("label") private String mLabel;
 	@SerializedName("url") private String mUrl;

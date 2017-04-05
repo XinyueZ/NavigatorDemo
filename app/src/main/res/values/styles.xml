@@ -1,23 +1,47 @@
 <resources>
 
-    <style name="ActionBar_ToolBar">
+    <style name="AppBar">
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="android:elevation">12dp</item>
-        <item name="android:popupTheme">@style/ToolbarTheme</item>
-        <item name="popupTheme">@style/ToolbarTheme</item>
+        <item name="android:popupTheme">@style/AppBarToolbarTheme</item>
+        <item name="popupTheme">@style/AppBarToolbarTheme</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="background">@color/colorPrimary</item>
         <item name="elevation">12dp</item>
 
     </style>
 
-    <!--For actionbar or toolbar.-->
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+    <style name="AppBarToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textColorPrimary">@color/colorWhite</item>
         <item name="android:textColorPrimaryInverse">@color/colorWhite</item>
     </style>
 
+
+    <style name="MenuBar" parent="AppBar">
+        <item name="android:popupTheme">@style/MenuBarToolbarTheme</item>
+        <item name="popupTheme">@style/MenuBarToolbarTheme</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="background">@color/colorAccent</item>
+
+    </style>
+
+
+    <style name="MenuBarToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="MaterialRippleLayout">
+        <item name="android:background">@color/colorTransparent</item>
+        <item name="mrl_rippleAlpha">0.2</item>
+        <item name="mrl_rippleColor">@color/colorGrey</item>
+        <item name="mrl_rippleDelayClick">true</item>
+        <item name="mrl_rippleHover">true</item>
+        <item name="mrl_rippleOverlay">true</item>
+    </style>
 </resources>

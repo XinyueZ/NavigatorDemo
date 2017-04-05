@@ -8,7 +8,7 @@ android {
     }
 
     configurations {
-        all*.exclude module: 'okio'
+//        all*.exclude module: 'okio'
 //        all*.exclude module: 'gson'
         all*.exclude module: 'support-v4'
         all*.exclude module: 'mediarouter-v7'
@@ -52,6 +52,7 @@ android {
 
 
 ext {
+    bus = "3+"
     gson = "2.8.0"
     junit = "4.12"
     espresso = "2.2.2"
@@ -82,6 +83,7 @@ dependencies {
     compile "com.android.support:support-media-compat:${appCompatVersion}"
 
     compile "com.google.code.gson:gson:${gson}"
+    compile "de.greenrobot:eventbus:${bus}"
 
     //Rx for android
     compile "io.reactivex.rxjava2:rxandroid:${rxandroid}"

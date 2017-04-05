@@ -12,7 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.databinding.AppBarLayoutBinding;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 
 public abstract class AppBarActivity extends AppCompatActivity {
@@ -21,6 +25,21 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	private AppBarLayoutBinding mBinding;
 	private ActionBarDrawerToggle mDrawerToggle;
 
+//------------------------------------------------
+//Subscribes, event-handlers
+//------------------------------------------------
+
+	/**
+	 * Handler for {@link CloseNavigatorEvent}.
+	 *
+	 * @param e Event {@link CloseNavigatorEvent}.
+	 */
+	@Subscribe
+	public void onEvent(CloseNavigatorEvent e) {
+		getBinding().drawerLayout.closeDrawers();
+	}
+
+	//------------------------------------------------
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,10 +60,19 @@ public abstract class AppBarActivity extends AppCompatActivity {
 
 	@Override
 	protected void onResume() {
+		EventBus.getDefault()
+		        .register(this);
 		super.onResume();
 		if (mDrawerToggle != null) {
 			mDrawerToggle.syncState();
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		EventBus.getDefault()
+		        .unregister(this);
 	}
 
 	/**
