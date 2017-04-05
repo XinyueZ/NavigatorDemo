@@ -11,13 +11,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.demo.navigator.R;
 import com.demo.navigator.bus.CloseNavigatorEvent;
-import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.databinding.AppBarLayoutBinding;
-import com.demo.navigator.ds.Entry;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
@@ -38,20 +35,10 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	 *
 	 * @param e Event {@link CloseNavigatorEvent}.
 	 */
+	@SuppressWarnings("unused")
 	@Subscribe
 	public void onEvent(CloseNavigatorEvent e) {
 		getBinding().drawerLayout.closeDrawers();
-	}
-
-	/**
-	 * Handler for {@link  EntryClickEvent}.
-	 *
-	 * @param e Event {@link EntryClickEvent}.
-	 */
-	@Subscribe
-	public void onEvent(EntryClickEvent e) {
-		Entry entry = e.getEntry();
-		Toast.makeText(this, entry.getLabel() + ", " + entry.getType(), Toast.LENGTH_SHORT).show();
 	}
 	//------------------------------------------------
 

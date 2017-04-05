@@ -4,7 +4,7 @@
         android:bottom="0.5dp"
         android:top="0.5dp">
         <shape>
-            <solid android:color="@color/colorPrimaryDark"/>
+            <solid android:color="@color/colorGrey"/>
         </shape>
     </item>
 </layer-list>
