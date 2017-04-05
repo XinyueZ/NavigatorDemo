@@ -10,12 +10,14 @@ import android.view.MenuItem;
 
 import com.demo.navigator.R;
 import com.demo.navigator.bus.CloseNavigatorEvent;
+import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.Entry;
 import com.demo.navigator.ds.NavigationEntries;
 import com.demo.navigator.retrofit.Service;
 
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -23,6 +25,15 @@ import io.reactivex.schedulers.Schedulers;
 public final class Navigator implements Toolbar.OnMenuItemClickListener {
 	private @Nullable FragmentNavigatorBinding mBinding;
 
+	/**
+	 * Handler for {@link  EntryClickEvent}.
+	 *
+	 * @param e Event {@link EntryClickEvent}.
+	 */
+	@Subscribe
+	public void onEvent(EntryClickEvent e) {
+		mBinding.navigatorContentFl.show(0, 0, 800);
+	}
 
 	public void setFragmentNavigatorBinding(@NonNull FragmentNavigatorBinding navigatorBinding) {
 		mBinding = navigatorBinding;

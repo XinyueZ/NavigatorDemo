@@ -13,6 +13,8 @@ import com.demo.navigator.app.App;
 import com.demo.navigator.R;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 
+import de.greenrobot.event.EventBus;
+
 public final class NavigatorFragment extends Fragment {
 	private static final int LAYOUT = R.layout.fragment_navigator;
 
@@ -29,5 +31,19 @@ public final class NavigatorFragment extends Fragment {
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		App.Instance.navigator.load();
+	}
+
+	@Override
+	public void onResume() {
+		EventBus.getDefault()
+		        .register(App.Instance.navigator);
+		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		EventBus.getDefault()
+		        .unregister(App.Instance.navigator);
+		super.onPause();
 	}
 }

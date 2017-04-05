@@ -13,7 +13,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
@@ -21,9 +20,10 @@
             android:id="@+id/menu_bar"
             style="@style/MenuBar"/>
 
-        <FrameLayout
+        <com.demo.navigator.utils.RevealLayout
             android:id="@+id/navigator_content_fl"
             android:layout_width="match_parent"
+            android:background="@color/colorWhite"
             android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>
