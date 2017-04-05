@@ -1,8 +1,10 @@
 package com.demo.navigator.home;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +13,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.demo.navigator.R;
 import com.demo.navigator.bus.OpenUriEvent;
@@ -24,6 +29,7 @@ public final class WebViewFragment extends Fragment {
 	private static final int LAYOUT = R.layout.fragment_web_view;
 	private static final String EXTRAS_URI = WebViewFragment.class.getName() + ".EXTRAS.uri";
 	private FragmentWebViewBinding mBinding;
+	private ProgressDialog mProgressDialog;
 
 	//------------------------------------------------
 	//Subscribes, event-handlers
@@ -77,6 +83,35 @@ public final class WebViewFragment extends Fragment {
 		}
 		setupWebViewSettings();
 		mBinding.contentWv.loadUrl(uri.toString());
+		mBinding.contentWv.setWebViewClient(new WebViewClient() {
+			@Override
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				super.onPageStarted(view, url, favicon);
+				if(mProgressDialog==null) {
+					mProgressDialog = ProgressDialog.show(getActivity(),null, getString(R.string.loading) );
+				}
+				mProgressDialog.show();
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+				if(mProgressDialog!=null && mProgressDialog.isShowing()) {
+					mProgressDialog.dismiss();
+					mProgressDialog = null;
+				}
+			}
+
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				return true;
+			}
+
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+				return true;
+			}
+		});
 	}
 
 	@SuppressLint("SetJavaScriptEnabled")

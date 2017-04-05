@@ -3,4 +3,5 @@
     <string name="home_url">https://www.mytoys.de</string>
     <string name="navi_url">https://mytoysiostestcase1.herokuapp.com/</string>
     <string name="main_menu">Menu</string>
+    <string name="loading">Loading…</string>
 </resources>
