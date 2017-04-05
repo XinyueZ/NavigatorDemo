@@ -2,6 +2,8 @@ package com.demo.navigator.navigation;
 
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.demo.navigator.R;
 import com.demo.navigator.app.App;
@@ -43,6 +46,11 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 	@SuppressWarnings("unused")
 	@Subscribe
 	public void onEvent(EntryClickEvent e) {
+		if (mBinding == null) {
+			return;
+		}
+
+		//Normal link
 		if (TextUtils.equals(e.getEntry()
 		                      .getType(), "link")) {
 			EventBus.getDefault()
@@ -52,9 +60,34 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 			        .post(new CloseNavigatorEvent());
 			return;
 		}
-		if (mBinding == null) {
+
+		//External link, then to browser
+		if (TextUtils.equals(e.getEntry()
+		                      .getType(), "external-link")) {
+
+			EventBus.getDefault()
+			        .post(new CloseNavigatorEvent());
+
+			try {
+				Intent myIntent = new Intent(Intent.ACTION_VIEW,
+				                             Uri.parse(e.getEntry()
+				                                        .getUrl()));
+				mBinding.getFragment()
+				        .startActivity(myIntent);
+			} catch (ActivityNotFoundException ex) {
+				try {
+					Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.android.chrome"));
+					mBinding.getFragment()
+					        .startActivity(myIntent);
+				} catch (ActivityNotFoundException exx) {
+					Toast.makeText(App.Instance, "Cannot open external-link, cannot find browser.", Toast.LENGTH_SHORT)
+					     .show();
+				}
+			}
 			return;
 		}
+
+		//Navigate to next entry
 		mBinding.navigatorContentFl.show(0, 0, 800);
 		navigateEntry(e.getEntry(), false);
 	}
@@ -145,7 +178,10 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		if (mBinding == null) {
 			return;
 		}
-		if(mBinding.getFragment().getChildFragmentManager().getBackStackEntryCount() == 0)
+		if (mBinding.getFragment()
+		            .getChildFragmentManager()
+		            .getBackStackEntryCount() == 0) {
 			mBinding.menuBar.setNavigationIcon(null);
+		}
 	}
 }

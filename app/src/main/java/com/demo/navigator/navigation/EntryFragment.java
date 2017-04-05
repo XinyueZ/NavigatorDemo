@@ -125,6 +125,7 @@ public final class EntryFragment extends Fragment {
 				case "node":
 					return ITEM_TYPE_NODE;
 				case "link":
+				case "external-link":
 					return ITEM_TYPE_LINK;
 			}
 			return super.getItemViewType(position);
