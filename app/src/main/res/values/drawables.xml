@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ic_close" type="drawable" >@drawable/ic_close_compat</item>
+    <item name="ic_arrow" type="drawable" >@drawable/ic_arrow_compat</item>
+</resources>
