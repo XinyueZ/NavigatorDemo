@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">NaviagorDemo</string>
+    <string name="app_name">Naviagor-Demo</string>
+    <string name="home_url">https://www.mytoys.de</string>
 </resources>

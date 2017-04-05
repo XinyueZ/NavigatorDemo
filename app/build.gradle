@@ -93,4 +93,5 @@ dependencies {
     //Official Retrofit
     compile "com.squareup.retrofit2:retrofit:${retrofit}"
     compile "com.squareup.retrofit2:converter-gson:${retrofit}"
+    compile 'com.android.support:support-v4:25.3.1'
 }
