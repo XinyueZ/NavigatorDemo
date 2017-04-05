@@ -33,6 +33,8 @@ package com.demo.navigator;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.demo.navigator.navigation.Navigator;
+
 
 /**
  * The app-object of the project.
@@ -51,4 +53,5 @@ public final class App extends MultiDexApplication {
 		Instance = this;
 	}
 
+	public Navigator navigator = new Navigator();
 }
