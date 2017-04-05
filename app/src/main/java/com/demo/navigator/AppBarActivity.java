@@ -2,17 +2,14 @@ package com.demo.navigator;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.demo.navigator.databinding.AppBarLayoutBinding;
@@ -54,12 +51,7 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	 * Initialize the navigation drawer.
 	 */
 	private void initDrawer() {
-		mDrawerToggle = new ActionBarDrawerToggle(this, getBinding().drawerLayout, R.string.app_name, R.string.app_name) {
-			@Override
-			public void onDrawerOpened(View drawerView) {
-				super.onDrawerOpened(drawerView);
-			}
-		};
+		mDrawerToggle = new ActionBarDrawerToggle(this, getBinding().drawerLayout, R.string.app_name, R.string.app_name);
 		getBinding().drawerLayout.addDrawerListener(mDrawerToggle);
 	}
 
@@ -81,19 +73,8 @@ public abstract class AppBarActivity extends AppCompatActivity {
 
 	protected abstract void setupContent(@NonNull FrameLayout contentLayout);
 
-	protected final void setupFragment(@IdRes int container, @NonNull Fragment fragment) {
-		getSupportFragmentManager().beginTransaction()
-		                           .replace(container, fragment)
-		                           .commit();
-	}
 
-
-	protected final void setupFragment(@NonNull Fragment fragment) {
-		setupFragment(R.id.appbar_content, fragment);
-	}
-
-
-	protected AppBarLayoutBinding getBinding() {
+	private AppBarLayoutBinding getBinding() {
 		return mBinding;
 	}
 

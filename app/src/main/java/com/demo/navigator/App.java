@@ -44,7 +44,7 @@ public final class App extends MultiDexApplication {
 	/**
 	 * Application's instance.
 	 */
-	public static App Instance;
+	@SuppressWarnings("WeakerAccess") public static App Instance;
 
 
 	{
