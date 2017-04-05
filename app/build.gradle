@@ -9,7 +9,7 @@ android {
 
     configurations {
         all*.exclude module: 'okio'
-        all*.exclude module: 'gson'
+//        all*.exclude module: 'gson'
         all*.exclude module: 'support-v4'
         all*.exclude module: 'mediarouter-v7'
     }
