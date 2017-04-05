@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    configurations {
+        all*.exclude module: 'okio'
+        all*.exclude module: 'gson'
+        all*.exclude module: 'support-v4'
+        all*.exclude module: 'mediarouter-v7'
+    }
+
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        multiDexEnabled = true
+
+        applicationId project.APP_APPLICATIONID
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+
+        versionName project.APP_VERSIONNAME
+        versionCode Integer.parseInt(project.APP_VERSIONCODE)
+
+        testInstrumentationRunner project.TEST_RUNNER
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        htmlReport false
+        abortOnError false
+    }
+}
+
+
+ext {
+    gson = "2.8.0"
+    junit = "4.12"
+    espresso = "2.2.2"
+    retrofit = "2.1.0"
+    rxandroid = "2.0.1"
+    multidexVersion = "1.0.1"
+    rxandroidAdapter = "1.0.0"
+    appCompatVersion = "25.3.1"
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${espresso}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile "junit:junit:${junit}"
+
+    compile "com.android.support:design:${appCompatVersion}"
+    compile "com.android.support:multidex:${multidexVersion}"
+    compile "com.android.support:appcompat-v7:${appCompatVersion}"
+    compile "com.android.support:support-compat:${appCompatVersion}"
+    compile "com.android.support:recyclerview-v7:${appCompatVersion}"
+    compile "com.android.support:support-core-ui:${appCompatVersion}"
+    compile "com.android.support:support-fragment:${appCompatVersion}"
+    compile "com.android.support:support-core-utils:${appCompatVersion}"
+    compile "com.android.support:support-annotations:${appCompatVersion}"
+    compile "com.android.support:support-media-compat:${appCompatVersion}"
+
+    compile "com.google.code.gson:gson:${gson}"
+
+    //Rx for android
+    compile "io.reactivex.rxjava2:rxandroid:${rxandroid}"
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${rxandroidAdapter}"
+    //Instead this official adapter, more info
+    // see https://github.com/JakeWharton/retrofit2-rxjava2-adapter
+    // see http://stackoverflow.com/questions/35233161/illegalargumentexception-could-not-locate-call-adapter-for-rx-observable-rxjava
+    //compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //Official Retrofit
+    compile "com.squareup.retrofit2:retrofit:${retrofit}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofit}"
+}
