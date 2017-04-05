@@ -1,9 +1,12 @@
-package com.demo.navigator;
+package com.demo.navigator.home;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
+
+import com.demo.navigator.app.AppBarActivity;
+import com.demo.navigator.R;
 
 public final class MainActivity extends AppBarActivity {
 

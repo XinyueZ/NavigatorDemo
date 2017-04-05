@@ -1,6 +1,6 @@
 package com.demo.navigator.retrofit;
 
-import com.demo.navigator.App;
+import com.demo.navigator.app.App;
 import com.demo.navigator.R;
 import com.demo.navigator.ds.NavigationEntries;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

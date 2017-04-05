@@ -1,4 +1,4 @@
-package com.demo.navigator;
+package com.demo.navigator.navigation;
 
 
 import android.databinding.DataBindingUtil;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.navigator.app.App;
+import com.demo.navigator.R;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 
 public final class NavigatorFragment extends Fragment {

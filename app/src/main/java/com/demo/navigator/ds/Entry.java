@@ -3,6 +3,7 @@ package com.demo.navigator.ds;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Entry implements Serializable {
@@ -43,6 +44,9 @@ public final class Entry implements Serializable {
 	}
 
 	public List<Entry> getChildren() {
+		if (mChildren == null) {
+			return new ArrayList<>();
+		}
 		return mChildren;
 	}
 

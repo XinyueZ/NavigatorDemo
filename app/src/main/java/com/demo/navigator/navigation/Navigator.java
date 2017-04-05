@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.demo.navigator.EntryFragment;
 import com.demo.navigator.R;
 import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;

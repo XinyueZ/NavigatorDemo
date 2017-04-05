@@ -1,4 +1,4 @@
-package com.demo.navigator;
+package com.demo.navigator.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 
+import com.demo.navigator.R;
 import com.demo.navigator.databinding.FragmentWebViewBinding;
 
 public final class WebViewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {

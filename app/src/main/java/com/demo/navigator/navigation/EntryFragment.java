@@ -1,4 +1,4 @@
-package com.demo.navigator;
+package com.demo.navigator.navigation;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -13,10 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.navigator.BR;
+import com.demo.navigator.utils.ListDivider;
+import com.demo.navigator.R;
+import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.databinding.FragmentEntryBinding;
 import com.demo.navigator.ds.Entry;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 
 public final class EntryFragment extends Fragment {
@@ -95,12 +101,13 @@ public final class EntryFragment extends Fragment {
 					                                             .inflate(ITEM_LAYOUT_LINK, parent, false));
 					break;
 			}
-			return new EntryViewHolder(binding);
+			return new EntryViewHolder(binding, mEntries);
 		}
 
 		@Override
 		public void onBindViewHolder(EntryViewHolder holder, int position) {
 			holder.mBinding.setVariable(BR.entry, mEntries.get(position));
+			holder.mBinding.setVariable(BR.viewholder, holder);
 			holder.mBinding.executePendingBindings();
 		}
 
@@ -124,12 +131,22 @@ public final class EntryFragment extends Fragment {
 		}
 	}
 
-	private final static class EntryViewHolder extends RecyclerView.ViewHolder {
+	public final static class EntryViewHolder extends RecyclerView.ViewHolder {
 		private ViewDataBinding mBinding;
+		private final EntryClickEvent mEntryClickedEvent = new EntryClickEvent();
+		private final @NonNull List<Entry> mEntries;
 
-		private EntryViewHolder(ViewDataBinding binding) {
+		private EntryViewHolder(ViewDataBinding binding, @NonNull List<Entry> entries) {
 			super(binding.getRoot());
+			mEntries = entries;
 			mBinding = binding;
+		}
+
+		public void onEntryClicked() {
+			int pos = getAdapterPosition();
+			mEntryClickedEvent.setEntry(mEntries.get(pos));
+			EventBus.getDefault()
+			        .post(mEntryClickedEvent);
 		}
 	}
 }

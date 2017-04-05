@@ -7,12 +7,18 @@
         <variable
             name="entry"
             type="com.demo.navigator.ds.Entry"/>
+
+        <variable
+            name="viewholder"
+            type="com.demo.navigator.navigation.EntryFragment.EntryViewHolder"/>
     </data>
 
     <com.demo.navigator.utils.MaterialRippleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> viewholder.onEntryClicked()}"
         android:orientation="vertical"
+        style="@style/MaterialRippleLayout"
         android:padding="@dimen/common_material_padding_margin_medium">
 
         <TextView

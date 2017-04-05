@@ -2,6 +2,7 @@ package com.demo.navigator.ds;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,9 @@ public final class NavigationEntries {
 	}
 
 	public List<Entry> getEntries() {
+		if(mEntries == null) {
+			return new ArrayList<>();
+		}
 		return mEntries;
 	}
 
