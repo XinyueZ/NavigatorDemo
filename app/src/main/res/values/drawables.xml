@@ -2,4 +2,5 @@
 <resources>
     <item name="ic_close" type="drawable" >@drawable/ic_close_compat</item>
     <item name="ic_arrow" type="drawable" >@drawable/ic_arrow_compat</item>
+    <item name="ic_back" type="drawable" >@drawable/ic_back_compat</item>
 </resources>
