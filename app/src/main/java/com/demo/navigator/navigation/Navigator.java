@@ -164,6 +164,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 			           .commit();
 			if (mBinding.menuBar.getNavigationIcon() == null) {
 				mBinding.menuBar.setNavigationIcon(AppCompatResources.getDrawable(App.Instance, R.drawable.ic_back));
+				mBinding.menuBar.setNavigationContentDescription(R.string.navigate_up);
 				mBinding.menuBar.setNavigationOnClickListener(this);
 			}
 		}
@@ -178,7 +179,8 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		mStackedEntries.pop();
 		fragment.getChildFragmentManager()
 		        .popBackStack();
-		mBinding.menuBar.setTitle(mStackedEntries.peek().getLabel());
+		mBinding.menuBar.setTitle(mStackedEntries.peek()
+		                                         .getLabel());
 	}
 
 	@Override

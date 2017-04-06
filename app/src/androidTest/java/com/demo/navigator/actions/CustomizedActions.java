@@ -11,8 +11,6 @@ import android.support.test.espresso.util.TreeIterables;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.demo.navigator.matchers.RecyclerViewMatcher;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
@@ -82,9 +80,5 @@ public final class CustomizedActions {
 				                                    .build();
 			}
 		};
-	}
-
-	public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
-		return new RecyclerViewMatcher(recyclerViewId);
 	}
 }
