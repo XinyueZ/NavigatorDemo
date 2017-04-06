@@ -31,6 +31,8 @@ Show demo how we navigate in Android App generally.
 
 [JUnit + Espresso](https://developer.android.com/training/testing/ui-testing/espresso-testing.html)
 
+In order to improve testing performance of business-logical we mock internet remove feeds, see ```MockService``` .
+
 ### Data Structure
 
 There are only 2 types to represent how navigation-data will be generated, the ```Entry``` and ```NavigationEntries``` which is aggregated by ```Entry```.
@@ -51,6 +53,9 @@ Here we use different layouts to represent them.
 ```ìtem-section.xml``` ```ìtem-node.xml``` ```ìtem-link.xml``` (also for external-link)
 
  ![Layout](photo/layout-case.png)
+
+
+#### Mocked feeds
 
 ```json
 {
