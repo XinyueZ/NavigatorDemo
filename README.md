@@ -17,7 +17,7 @@ Show demo how we navigate in Android App generally.
 ### Design pattern
 
 - [Composite](https://en.wikipedia.org/wiki/Composite_pattern)
-- [Singleton](hhttps://en.wikipedia.org/wiki/Singleton_pattern)
+- [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern)
 - [Model–view–presenter(MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
 
 ### Other libraries and dependencies
