@@ -53,6 +53,7 @@ android {
 
 ext {
     bus = "3+"
+    dagger = "2+"
     gson = "2.8.0"
     junit = "4.12"
     espresso = "2.2.2"
@@ -71,6 +72,7 @@ dependencies {
     })
     testCompile "junit:junit:${junit}"
 
+    //Support libraries
     compile "com.android.support:design:${appCompatVersion}"
     compile "com.android.support:multidex:${multidexVersion}"
     compile "com.android.support:appcompat-v7:${appCompatVersion}"
@@ -82,8 +84,11 @@ dependencies {
     compile "com.android.support:support-annotations:${appCompatVersion}"
     compile "com.android.support:support-media-compat:${appCompatVersion}"
 
-    compile "com.google.code.gson:gson:${gson}"
+    //Google libs
     compile "de.greenrobot:eventbus:${bus}"
+    compile "com.google.code.gson:gson:${gson}"
+    compile "com.google.dagger:dagger:${dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger}"
 
     //Rx for android
     compile "io.reactivex.rxjava2:rxandroid:${rxandroid}"

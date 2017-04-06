@@ -2,7 +2,7 @@ package com.demo.navigator.bus;
 
 import android.support.annotation.NonNull;
 
-import com.demo.navigator.ds.Entry;
+import com.demo.navigator.ds.model.Entry;
 
 public final class EntryClickEvent {
 	private Entry mEntry;

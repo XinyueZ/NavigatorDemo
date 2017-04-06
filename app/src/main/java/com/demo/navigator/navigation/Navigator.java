@@ -4,6 +4,7 @@ package com.demo.navigator.navigation;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,20 +24,58 @@ import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.bus.OpenUriEvent;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
-import com.demo.navigator.ds.Entry;
-import com.demo.navigator.ds.NavigationEntries;
-import com.demo.navigator.retrofit.Service;
+import com.demo.navigator.ds.DsRepository;
+import com.demo.navigator.ds.DsSource;
+import com.demo.navigator.ds.model.Entry;
+
+import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public final class Navigator implements Toolbar.OnMenuItemClickListener,
                                         View.OnClickListener,
-                                        FragmentManager.OnBackStackChangedListener {
+                                        FragmentManager.OnBackStackChangedListener,
+                                        NavigatorContract.Presenter {
 	private @Nullable FragmentNavigatorBinding mBinding;
+	private final DsRepository mDsRepository;
+	private final NavigatorContract.View mView;
+
+
+	@Inject
+	Navigator(DsRepository dsRepository, NavigatorContract.View view) {
+		mDsRepository = dsRepository;
+		mView = view;
+	}
+
+
+	@Inject
+	void onReadySetPresenter() {
+		mView.setPresenter(this);
+	}
+
+	@Override
+	public void start(ViewDataBinding binding) {
+		mBinding = (FragmentNavigatorBinding) binding;
+		mView.showEntry();
+	}
+
+	void load() {
+		mDsRepository.loadEntry(new DsSource.EntryLoadedCallback() {
+			@Override
+			public void onLoaded(@NonNull Entry entry) {
+				if (mBinding == null) {
+					return;
+				}
+				setupMenuBar();
+				navigateEntry(entry, true);
+				mBinding.getFragment()
+				        .getChildFragmentManager()
+				        .addOnBackStackChangedListener(Navigator.this);
+			}
+		});
+	}
+
 
 	/**
 	 * Handler for {@link  EntryClickEvent}.
@@ -92,9 +131,6 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		navigateEntry(e.getEntry(), false);
 	}
 
-	public void setFragmentNavigatorBinding(@NonNull FragmentNavigatorBinding navigatorBinding) {
-		mBinding = navigatorBinding;
-	}
 
 	private void setupMenuBar() {
 		if (mBinding == null) {
@@ -114,26 +150,6 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				break;
 		}
 		return false;
-	}
-
-	public void load() {
-		Service.Instance.getNavigationEntries()
-		                .subscribeOn(Schedulers.io())
-		                .observeOn(AndroidSchedulers.mainThread())
-		                .subscribe(new Consumer<NavigationEntries>() {
-			                @Override
-			                public void accept(NavigationEntries navigationEntries) throws Exception {
-				                if (mBinding == null) {
-					                return;
-				                }
-				                Entry entry = new Entry("root", "root", null, navigationEntries.getEntries());
-				                setupMenuBar();
-				                navigateEntry(entry, true);
-				                mBinding.getFragment()
-				                        .getChildFragmentManager()
-				                        .addOnBackStackChangedListener(Navigator.this);
-			                }
-		                });
 	}
 
 	private void navigateEntry(@NonNull Entry entry, boolean isRoot) {

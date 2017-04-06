@@ -9,41 +9,59 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.demo.navigator.app.App;
 import com.demo.navigator.R;
+import com.demo.navigator.app.App;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
+
+import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 
-public final class NavigatorFragment extends Fragment {
+public final class NavigatorFragment extends Fragment implements NavigatorContract.View {
 	private static final int LAYOUT = R.layout.fragment_navigator;
+	@Inject Navigator mNavigator;
+	private FragmentNavigatorBinding mBinding;
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		FragmentNavigatorBinding binding = DataBindingUtil.inflate(inflater, LAYOUT, container, false);
-		binding.setFragment(this);
-		App.Instance.navigator.setFragmentNavigatorBinding(binding);
-		return binding.getRoot();
+		mBinding = DataBindingUtil.inflate(inflater, LAYOUT, container, false);
+		mBinding.setFragment(this);
+		return mBinding.getRoot();
 	}
 
 	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		App.Instance.navigator.load();
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		DaggerNavigatorComponent.builder()
+		                        .navigatorModule(new NavigatorModule(this))
+		                        .dsRepositoryComponent((App.Instance).getRepositoryComponent())
+		                        .build()
+		                        .inject(this);
 	}
 
 	@Override
 	public void onResume() {
 		EventBus.getDefault()
-		        .register(App.Instance.navigator);
+		        .register(mNavigator);
 		super.onResume();
+		mNavigator.start(mBinding);
 	}
 
 	@Override
 	public void onPause() {
 		EventBus.getDefault()
-		        .unregister(App.Instance.navigator);
+		        .unregister(mNavigator);
 		super.onPause();
+	}
+
+	@Override
+	public void setPresenter(Navigator presenter) {
+		mNavigator = presenter;
+	}
+
+	@Override
+	public void showEntry() {
+		mNavigator.load();
 	}
 }

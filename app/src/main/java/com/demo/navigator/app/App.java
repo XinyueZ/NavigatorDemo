@@ -33,7 +33,8 @@ package com.demo.navigator.app;
 
 import android.support.multidex.MultiDexApplication;
 
-import com.demo.navigator.navigation.Navigator;
+import com.demo.navigator.ds.DaggerDsRepositoryComponent;
+import com.demo.navigator.ds.DsRepositoryComponent;
 
 
 /**
@@ -53,5 +54,23 @@ public final class App extends MultiDexApplication {
 		Instance = this;
 	}
 
-	public Navigator navigator = new Navigator();
+
+
+
+	private DsRepositoryComponent mRepositoryComponent;
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		mRepositoryComponent = DaggerDsRepositoryComponent.builder()
+		                                                  .applicationModule(new ApplicationModule((getApplicationContext())))
+		                                                  .build();
+
+	}
+
+
+	public DsRepositoryComponent getRepositoryComponent() {
+		return mRepositoryComponent;
+	}
 }

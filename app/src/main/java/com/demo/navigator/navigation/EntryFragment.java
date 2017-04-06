@@ -18,7 +18,7 @@ import com.demo.navigator.utils.ListDivider;
 import com.demo.navigator.R;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.databinding.FragmentEntryBinding;
-import com.demo.navigator.ds.Entry;
+import com.demo.navigator.ds.model.Entry;
 
 import java.util.List;
 

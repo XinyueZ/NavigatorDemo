@@ -1,4 +1,4 @@
-package com.demo.navigator.ds;
+package com.demo.navigator.ds.model;
 
 import com.google.gson.annotations.SerializedName;
 
