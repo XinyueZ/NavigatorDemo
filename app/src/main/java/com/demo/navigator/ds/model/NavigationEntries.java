@@ -5,9 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by xzhao on 05.04.17.
- */
 
 public final class NavigationEntries {
 	@SerializedName("navigationEntries") private List<Entry> mEntries;
