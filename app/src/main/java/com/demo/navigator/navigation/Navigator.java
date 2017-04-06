@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -89,47 +88,45 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		if (mBinding == null) {
 			return;
 		}
+		switch (e.getEntry()
+		         .getType()) {
+			case "link":
+				//Normal link
+				EventBus.getDefault()
+				        .post(new OpenUriEvent(Uri.parse(e.getEntry()
+				                                          .getUrl())));
+				EventBus.getDefault()
+				        .post(new CloseNavigatorEvent());
+				return;
+			case "external-link":
+				//External link, then to browser
+				EventBus.getDefault()
+				        .post(new CloseNavigatorEvent());
 
-		//Normal link
-		if (TextUtils.equals(e.getEntry()
-		                      .getType(), "link")) {
-			EventBus.getDefault()
-			        .post(new OpenUriEvent(Uri.parse(e.getEntry()
-			                                          .getUrl())));
-			EventBus.getDefault()
-			        .post(new CloseNavigatorEvent());
-			return;
-		}
-
-		//External link, then to browser
-		if (TextUtils.equals(e.getEntry()
-		                      .getType(), "external-link")) {
-
-			EventBus.getDefault()
-			        .post(new CloseNavigatorEvent());
-
-			try {
-				Intent myIntent = new Intent(Intent.ACTION_VIEW,
-				                             Uri.parse(e.getEntry()
-				                                        .getUrl()));
-				mBinding.getFragment()
-				        .startActivity(myIntent);
-			} catch (ActivityNotFoundException ex) {
 				try {
-					Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.android.chrome"));
+					Intent myIntent = new Intent(Intent.ACTION_VIEW,
+					                             Uri.parse(e.getEntry()
+					                                        .getUrl()));
 					mBinding.getFragment()
 					        .startActivity(myIntent);
-				} catch (ActivityNotFoundException exx) {
-					Toast.makeText(App.Instance, "Cannot open external-link, cannot find browser.", Toast.LENGTH_SHORT)
-					     .show();
+				} catch (ActivityNotFoundException ex) {
+					try {
+						Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.android.chrome"));
+						mBinding.getFragment()
+						        .startActivity(myIntent);
+					} catch (ActivityNotFoundException exx) {
+						Toast.makeText(App.Instance, "Cannot open external-link, cannot find browser.", Toast.LENGTH_SHORT)
+						     .show();
+					}
 				}
-			}
-			return;
+				return;
+			default:
+				//Navigate to next entry
+				mBinding.navigatorContentFl.show(0, 0, 800);
+				navigateEntry(e.getEntry(), false);
+				mBinding.menuBar.setTitle(e.getEntry().getLabel());
+				break;
 		}
-
-		//Navigate to next entry
-		mBinding.navigatorContentFl.show(0, 0, 800);
-		navigateEntry(e.getEntry(), false);
 	}
 
 
@@ -199,6 +196,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		            .getChildFragmentManager()
 		            .getBackStackEntryCount() == 0) {
 			mBinding.menuBar.setNavigationIcon(null);
+			mBinding.menuBar.setTitle(R.string.main_menu);
 		}
 	}
 }
