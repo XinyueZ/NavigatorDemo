@@ -69,8 +69,18 @@ ext {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile("com.android.support.test.espresso:espresso-core:${espresso}", {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support'
     })
+    compile ("com.android.support.test.espresso:espresso-idling-resource:${espresso}", {
+        exclude group: 'com.android.support'
+    })
+    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:${espresso}", {
+        exclude group: 'com.android.support'
+    })
+    androidTestCompile ("com.android.support.test.espresso:espresso-intents:${espresso}", {
+        exclude group: 'com.android.support'
+    })
+
     testCompile "junit:junit:${junit}"
 
     //Support libraries

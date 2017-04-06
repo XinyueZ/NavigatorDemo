@@ -35,8 +35,7 @@ public interface Service {
 
 			                                          return chain.proceed(request);
 		                                          }
-	                                          })
-	                                                                            .build())
+	                                          }).build())
 	                                          .build();
 
 	Service Instance = Retrofit.create(Service.class);
