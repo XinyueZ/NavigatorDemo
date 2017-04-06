@@ -11,7 +11,6 @@ import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
@@ -20,8 +19,6 @@ public interface Service {
 	@GET("api/navigation")
 	Observable<NavigationEntries> getNavigationEntries();
 
-	@GET("api/navigation")
-	Call<NavigationEntries> getNavigationEntriesSync();
 
 	Retrofit Retrofit = new Retrofit.Builder().baseUrl(App.Instance.getString(R.string.navi_url))
 	                                          .addConverterFactory(GsonConverterFactory.create())
