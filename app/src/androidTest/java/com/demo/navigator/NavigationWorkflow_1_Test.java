@@ -1,6 +1,5 @@
 package com.demo.navigator;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -39,7 +38,6 @@ public class NavigationWorkflow_1_Test {
 		onView(withId(R.id.drawer_layout)).check(matches(isClosed(Gravity.LEFT)))
 		                                  .perform(open()); // Left Drawer should be closed.
 		onView(isRoot()).perform(waitId(R.id.entry_content_rv, TimeUnit.SECONDS.toMillis(30)));
-		onView(withId(R.id.entry_content_rv)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 		onView(withText("Alter")).perform(click());
 		TimeUnit.SECONDS.sleep(3);
 		onView(withText("Baby & Kleinkind")).perform(click());

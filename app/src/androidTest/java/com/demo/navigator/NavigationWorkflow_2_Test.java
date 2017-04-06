@@ -2,7 +2,6 @@
 
 package com.demo.navigator;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
@@ -45,8 +44,6 @@ public class NavigationWorkflow_2_Test {
 		onView(withId(R.id.drawer_layout)).check(matches(isClosed(Gravity.LEFT)))
 		                                  .perform(open()); // Left Drawer should be closed.
 		onView(isRoot()).perform(waitId(R.id.entry_content_rv, TimeUnit.SECONDS.toMillis(30)));
-		onView(withId(R.id.entry_content_rv)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-		TimeUnit.SECONDS.sleep(3);
 		onView(withText("Alter")).perform(click());
 		TimeUnit.SECONDS.sleep(3);
 		onView(withText("Baby & Kleinkind")).perform(click());
@@ -56,10 +53,6 @@ public class NavigationWorkflow_2_Test {
 		onView(withContentDescription(R.string.navigate_up)).perform(click()); //up
 		TimeUnit.SECONDS.sleep(3);
 		onView(ViewMatchers.withId(R.id.menu_bar)).check(matches(withToolbarTitle(Is.<CharSequence> is("Alter"))));
-		TimeUnit.SECONDS.sleep(3);
-		onView(withContentDescription(R.string.navigate_up)).perform(click()); //up
-		TimeUnit.SECONDS.sleep(3);
-		onView(ViewMatchers.withId(R.id.menu_bar)).check(matches(withToolbarTitle(Is.<CharSequence> is("Sortiment"))));
 		TimeUnit.SECONDS.sleep(3);
 		onView(withContentDescription(R.string.navigate_up)).perform(click()); //up
 		TimeUnit.SECONDS.sleep(3);
