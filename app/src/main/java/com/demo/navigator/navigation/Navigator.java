@@ -62,7 +62,8 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		mDsRepository.loadEntry(new DsSource.EntryLoadedCallback() {
 			@Override
 			public void onLoaded(@NonNull Entry entry) {
-				if (mBinding == null) {
+				if (mBinding == null || !mBinding.getFragment()
+				                                 .isAdded()) {
 					return;
 				}
 				mBinding.navigatorContentFl.removeAllViews();
