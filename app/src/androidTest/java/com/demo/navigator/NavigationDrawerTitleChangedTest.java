@@ -18,9 +18,9 @@ package com.demo.navigator;
 
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.view.Gravity;
 
 import com.demo.navigator.ds.model.Entry;
@@ -47,7 +47,7 @@ import static com.demo.navigator.actions.CustomizedActions.withToolbarTitle;
  * Testing whether the title of menu will be changed after {@link Entry#getType()} is {@code section}.
  */
 @RunWith(AndroidJUnit4.class)
-@LargeTest
+@SmallTest
 public class NavigationDrawerTitleChangedTest {
 
 	@Rule public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
