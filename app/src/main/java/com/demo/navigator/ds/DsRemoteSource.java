@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.demo.navigator.ds.model.Entry;
 import com.demo.navigator.ds.model.NavigationEntries;
-import com.demo.navigator.retrofit.Service;
+import com.demo.navigator.retrofit.Backend;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,7 +24,7 @@ public final class DsRemoteSource implements DsSource {
 	@Override
 	public void loadEntry(@NonNull
 	                      final EntryLoadedCallback callback) {
-		Service.Instance.getNavigationEntries()
+		Backend.Instance.getNavigationEntries()
 		                .subscribeOn(Schedulers.io())
 		                .observeOn(AndroidSchedulers.mainThread())
 		                .subscribe(new Consumer<NavigationEntries>() {
