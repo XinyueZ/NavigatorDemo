@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@{entry.getLabel()}"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:textColor="@color/colorPrimaryDark"
             tools:text="Section"/>
     </com.demo.navigator.utils.MaterialRippleLayout>

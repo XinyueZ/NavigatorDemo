@@ -68,6 +68,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				if (mBinding == null) {
 					return;
 				}
+				mBinding.navigatorContentFl.removeAllViews();
 				navigateEntry(entry, true);
 				mBinding.getFragment()
 				        .getChildFragmentManager()
