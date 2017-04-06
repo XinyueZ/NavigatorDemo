@@ -1,4 +1,4 @@
-NavigatorDemo
+Navigator Demo
 ======
 Show demo how we navigate in Android App generally.
 
