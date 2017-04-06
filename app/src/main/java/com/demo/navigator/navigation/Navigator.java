@@ -66,7 +66,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 					return;
 				}
 				mBinding.navigatorContentFl.removeAllViews();
-				navigateEntry(entry, true);
+				navigateTo(entry, true);
 				mBinding.getFragment()
 				        .getChildFragmentManager()
 				        .addOnBackStackChangedListener(Navigator.this);
@@ -110,7 +110,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 			default:
 				//Navigate to next entry
 				mBinding.navigatorContentFl.show(0, 0, 800);
-				navigateEntry(e.getEntry(), false);
+				navigateTo(e.getEntry(), false);
 				mBinding.menuBar.setTitle(e.getEntry()
 				                           .getLabel());
 				break;
@@ -138,7 +138,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		return false;
 	}
 
-	private void navigateEntry(@NonNull Entry entry, boolean isRoot) {
+	private void navigateTo(@NonNull Entry entry, boolean isRoot) {
 		if (mBinding == null) {
 			return;
 		}
