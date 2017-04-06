@@ -46,5 +46,18 @@
             android:layout_height="10dp"
             android:layout_marginBottom="@dimen/common_material_padding_margin_large"
             android:background="@drawable/round_gray_rectangle"/>
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="10dp"
+            android:layout_marginBottom="@dimen/common_material_padding_margin_large"
+            android:background="@drawable/round_gray_rectangle"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="10dp"
+            android:layout_marginBottom="@dimen/common_material_padding_margin_large"
+            android:background="@drawable/round_gray_rectangle"/>
     </LinearLayout>
 </merge>

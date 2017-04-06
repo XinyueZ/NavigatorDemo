@@ -23,7 +23,7 @@
         android:onClick="@{() -> viewholder.onEntryClicked()}"
         android:orientation="vertical"
         style="@style/MaterialRippleLayout"
-        android:padding="@dimen/common_material_padding_margin_medium">
+        android:padding="@dimen/common_material_padding_margin_large">
 
         <TextView
             android:id="@+id/label_tv"
