@@ -18,19 +18,20 @@
     </data>
 
     <com.demo.navigator.utils.MaterialRippleLayout
+        style="@style/MaterialRippleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorRed"
         android:onClick="@{() -> viewholder.onEntryClicked()}"
         android:orientation="vertical"
-        style="@style/MaterialRippleLayout"
         android:padding="@dimen/common_material_padding_margin_large">
 
         <TextView
             android:id="@+id/label_tv"
-            android:drawableStart="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
-            android:drawableLeft="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
+            android:drawableStart="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
             android:gravity="center_vertical"
             android:text="@{entry.getLabel()}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"

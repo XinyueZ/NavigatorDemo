@@ -14,11 +14,12 @@
     </data>
 
     <com.demo.navigator.utils.MaterialRippleLayout
+        style="@style/MaterialRippleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorGreen"
         android:onClick="@{() -> viewholder.onEntryClicked()}"
         android:orientation="vertical"
-        style="@style/MaterialRippleLayout"
         android:padding="@dimen/common_material_padding_margin_large">
 
         <TextView
