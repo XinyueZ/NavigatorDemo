@@ -23,6 +23,7 @@ Show demo how we navigate in Android App generally.
 ### Other libraries and dependencies
 
 - [GSON](https://github.com/google/gson) as data-parse.
+- [Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs) for external-link.
 - [smoothprogressbar](https://github.com/castorflex/SmoothProgressBar) as better loading-indicator.
 - [Android Support-lib](https://developer.android.com/topic/libraries/support-library/index.html) as you know.
 
