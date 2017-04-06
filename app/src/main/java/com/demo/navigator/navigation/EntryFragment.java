@@ -9,11 +9,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.demo.navigator.BR;
+import com.demo.navigator.app.App;
+import com.demo.navigator.utils.CustomTabUtils;
 import com.demo.navigator.utils.ListDivider;
 import com.demo.navigator.R;
 import com.demo.navigator.bus.EntryClickEvent;
@@ -55,6 +58,12 @@ public final class EntryFragment extends Fragment {
 		}
 		setupList();
 		showEntry(entry);
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		CustomTabUtils.unbind(App.Instance);
 	}
 
 	private void setupList() {
@@ -112,6 +121,12 @@ public final class EntryFragment extends Fragment {
 			holder.mBinding.setVariable(BR.entry, mEntries.get(position));
 			holder.mBinding.setVariable(BR.viewholder, holder);
 			holder.mBinding.setVariable(BR.isSelected, melectedPosition == position);
+			if (TextUtils.equals(mEntries.get(position)
+			                             .getType(), "link")) {
+				CustomTabUtils.bind(App.Instance,
+				                    mEntries.get(position)
+				                            .getUrl());
+			}
 			holder.mBinding.executePendingBindings();
 		}
 

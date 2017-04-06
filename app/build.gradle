@@ -76,6 +76,7 @@ dependencies {
     //Support libraries
     compile "com.android.support:design:${appCompatVersion}"
     compile "com.android.support:multidex:${multidexVersion}"
+    compile "com.android.support:customtabs:${appCompatVersion}"
     compile "com.android.support:appcompat-v7:${appCompatVersion}"
     compile "com.android.support:support-compat:${appCompatVersion}"
     compile "com.android.support:recyclerview-v7:${appCompatVersion}"
@@ -84,6 +85,7 @@ dependencies {
     compile "com.android.support:support-core-utils:${appCompatVersion}"
     compile "com.android.support:support-annotations:${appCompatVersion}"
     compile "com.android.support:support-media-compat:${appCompatVersion}"
+
 
     //Google libs
     compile "de.greenrobot:eventbus:${bus}"

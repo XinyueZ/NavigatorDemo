@@ -2,8 +2,6 @@ package com.demo.navigator.navigation;
 
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -15,13 +13,13 @@ import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.demo.navigator.R;
 import com.demo.navigator.app.App;
 import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.bus.OpenUriEvent;
+import com.demo.navigator.utils.CustomTabUtils;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.DsRepository;
 import com.demo.navigator.ds.DsSource;
@@ -103,28 +101,18 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				EventBus.getDefault()
 				        .post(new CloseNavigatorEvent());
 
-				try {
-					Intent myIntent = new Intent(Intent.ACTION_VIEW,
-					                             Uri.parse(e.getEntry()
-					                                        .getUrl()));
-					mBinding.getFragment()
-					        .startActivity(myIntent);
-				} catch (ActivityNotFoundException ex) {
-					try {
-						Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.android.chrome"));
-						mBinding.getFragment()
-						        .startActivity(myIntent);
-					} catch (ActivityNotFoundException exx) {
-						Toast.makeText(App.Instance, "Cannot open external-link, cannot find browser.", Toast.LENGTH_SHORT)
-						     .show();
-					}
-				}
+				CustomTabUtils.openWeb(mBinding.getFragment(),
+				                       e.getEntry()
+				                        .getLabel(),
+				                       Uri.parse(e.getEntry()
+				                                  .getUrl()));
 				return;
 			default:
 				//Navigate to next entry
 				mBinding.navigatorContentFl.show(0, 0, 800);
 				navigateEntry(e.getEntry(), false);
-				mBinding.menuBar.setTitle(e.getEntry().getLabel());
+				mBinding.menuBar.setTitle(e.getEntry()
+				                           .getLabel());
 				break;
 		}
 	}
