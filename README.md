@@ -2,6 +2,8 @@ NavigatorDemo
 ======
 Show demo how we navigate in Android App generally.
 
+ ![logo](photo/ic_launcher.png)
+
 ### Architecture
 
 - [Model–view–presenter(MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
