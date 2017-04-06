@@ -35,7 +35,7 @@
             android:drawableStart="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
             android:gravity="center_vertical"
             android:text="@{entry.getLabel()}"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@color/colorBlack"
             tools:text="Link"/>
     </com.demo.navigator.utils.MaterialRippleLayout>
