@@ -28,22 +28,35 @@
                     layout="@layout/appbar"/>
 
                 <FrameLayout
-                    android:id="@+id/appbar_content"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    />
-            </android.support.design.widget.CoordinatorLayout>
-        </FrameLayout>
+                    android:layout_height="match_parent">
 
+                    <FrameLayout
+                        android:id="@+id/appbar_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+                        android:id="@+id/loading_pb"
+                        style="@style/GradientProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/pb_height"
+                        android:layout_gravity="top"
+                        android:indeterminate="true"/>
+                </FrameLayout>
+            </android.support.design.widget.CoordinatorLayout>
+
+        </FrameLayout>
 
 
         <fragment
             android:id="@+id/navigator_fg"
             android:name="com.demo.navigator.navigation.NavigatorFragment"
             android:layout_width="match_parent"
-            android:layout_gravity="start|left"
             android:layout_height="match_parent"
+            android:layout_gravity="start|left"
             android:fitsSystemWindows="true"/>
 
     </android.support.v4.widget.DrawerLayout>

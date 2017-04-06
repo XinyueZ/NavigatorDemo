@@ -41,11 +41,16 @@ public final class NavigatorFragment extends Fragment implements NavigatorContra
 	}
 
 	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		mNavigator.start(mBinding);
+	}
+
+	@Override
 	public void onResume() {
 		EventBus.getDefault()
 		        .register(mNavigator);
 		super.onResume();
-		mNavigator.start(mBinding);
 	}
 
 	@Override

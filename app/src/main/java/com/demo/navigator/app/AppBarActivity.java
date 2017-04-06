@@ -10,10 +10,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.demo.navigator.R;
 import com.demo.navigator.bus.CloseNavigatorEvent;
+import com.demo.navigator.bus.PbDoneEvent;
+import com.demo.navigator.bus.PbLoadingEvent;
 import com.demo.navigator.databinding.AppBarLayoutBinding;
 
 import de.greenrobot.event.EventBus;
@@ -39,6 +42,28 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	@Subscribe
 	public void onEvent(CloseNavigatorEvent e) {
 		getBinding().drawerLayout.closeDrawers();
+	}
+
+	/**
+	 * Handler for {@link PbLoadingEvent}.
+	 *
+	 * @param e Event {@link PbLoadingEvent}.
+	 */
+	@SuppressWarnings("unused")
+	@Subscribe
+	public void onEvent(PbLoadingEvent e) {
+		mBinding.loadingPb.setVisibility(View.VISIBLE);
+	}
+
+	/**
+	 * Handler for {@link PbDoneEvent}.
+	 *
+	 * @param e Event {@link PbDoneEvent}.
+	 */
+	@SuppressWarnings("unused")
+	@Subscribe
+	public void onEvent(PbDoneEvent e) {
+		mBinding.loadingPb.setVisibility(View.GONE);
 	}
 	//------------------------------------------------
 
