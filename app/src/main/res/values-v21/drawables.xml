@@ -3,4 +3,5 @@
     <item name="ic_close" type="drawable" >@drawable/ic_close_vec</item>
     <item name="ic_arrow" type="drawable" >@drawable/ic_arrow_vec</item>
     <item name="ic_back" type="drawable" >@drawable/ic_back_vec</item>
+    <item name="ic_open" type="drawable" >@drawable/ic_open_vec</item>
 </resources>
