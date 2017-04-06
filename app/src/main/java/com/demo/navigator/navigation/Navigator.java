@@ -25,6 +25,8 @@ import com.demo.navigator.ds.DsRepository;
 import com.demo.navigator.ds.DsSource;
 import com.demo.navigator.ds.model.Entry;
 
+import java.util.Stack;
+
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
@@ -37,7 +39,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 	private @Nullable FragmentNavigatorBinding mBinding;
 	private final DsRepository mDsRepository;
 	private final NavigatorContract.View mView;
-
+	private final Stack<Entry> mStackedEntries = new Stack<>();
 
 	@Inject
 	Navigator(DsRepository dsRepository, NavigatorContract.View view) {
@@ -158,6 +160,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 
 			transaction.addToBackStack(null)
 			           .commit();
+			mStackedEntries.push(entry);
 			if (mBinding.menuBar.getNavigationIcon() == null) {
 				mBinding.menuBar.setNavigationIcon(AppCompatResources.getDrawable(App.Instance, R.drawable.ic_back));
 				mBinding.menuBar.setNavigationOnClickListener(this);
@@ -173,7 +176,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		Fragment fragment = mBinding.getFragment();
 		fragment.getChildFragmentManager()
 		        .popBackStack();
-
+		mBinding.menuBar.setTitle(mStackedEntries.pop().getLabel());
 	}
 
 	@Override
