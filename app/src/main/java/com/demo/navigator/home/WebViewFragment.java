@@ -5,6 +5,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -87,22 +88,29 @@ public final class WebViewFragment extends Fragment {
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				super.onPageStarted(view, url, favicon);
-				EventBus.getDefault().post(new PbLoadingEvent());
+				EventBus.getDefault()
+				        .post(new PbLoadingEvent());
 			}
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
-				EventBus.getDefault().post(new PbDoneEvent());
+				EventBus.getDefault()
+				        .post(new PbDoneEvent());
 			}
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				mBinding.contentWv.loadUrl(url);
 				return true;
 			}
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+					mBinding.contentWv.loadUrl(request.getUrl()
+					                                  .toString());
+				}
 				return true;
 			}
 		});

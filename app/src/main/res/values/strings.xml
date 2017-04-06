@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Naviagor-Demo</string>
+    <string name="app_name">Navigator-Demo</string>
     <string name="home_url">https://www.mytoys.de</string>
     <string name="navi_url">https://mytoysiostestcase1.herokuapp.com/</string>
     <string name="main_menu">Menu</string>
