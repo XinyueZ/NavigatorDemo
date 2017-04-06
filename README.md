@@ -29,7 +29,7 @@ Show demo how we navigate in Android App generally.
 
 ### Feeds and Data Structure
 
-There are only 2 types to represent how navigation, the ```Entry``` and ```NavigationEntries``` which is aggregated by ```Entry```.
+There are only 2 types to represent how navigation-data will be generated, the ```Entry``` and ```NavigationEntries``` which is aggregated by ```Entry```.
 
 ```Entry``` can also be aggregated by itself.
 
