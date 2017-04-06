@@ -9,6 +9,7 @@ Show demo how we navigate in Android App generally.
 - [Retrofit2](http://square.github.io/retrofit/) 
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
 - [EventBus](https://github.com/greenrobot/EventBus) 
+- [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) 
 
 
 ### Design pattern
@@ -27,13 +28,26 @@ Show demo how we navigate in Android App generally.
 
 [JUnit + Espresso](https://developer.android.com/training/testing/ui-testing/espresso-testing.html)
 
-### Feeds and Data Structure
+### Data Structure
 
 There are only 2 types to represent how navigation-data will be generated, the ```Entry``` and ```NavigationEntries``` which is aggregated by ```Entry```.
 
 ```Entry``` can also be aggregated by itself.
 
 ![Structure](photo/data-struct.png)
+
+Also you get that there are four ```Entry``` types:
+
+- section: represented in JSON as"type": "section"
+- node: represented in JSON as "type": "node"
+- link: represented in JSON as "type": "link"
+- external-link: represented in JSON as "type": "external-link"
+
+Here we use different layouts to represent them.
+
+```ìtem-section.xml``` ```ìtem-node.xml``` ```ìtem-link.xml``` (also for external-link)
+
+ ![Layout](photo/layout-case.png)
 
 ```json
 {
