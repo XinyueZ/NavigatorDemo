@@ -153,6 +153,8 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 			                                          .add(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, entry));
 
 
+			mStackedEntries.push(entry);
+
 			if (isRoot) {
 				transaction.commit();
 				return;
@@ -160,7 +162,6 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 
 			transaction.addToBackStack(null)
 			           .commit();
-			mStackedEntries.push(entry);
 			if (mBinding.menuBar.getNavigationIcon() == null) {
 				mBinding.menuBar.setNavigationIcon(AppCompatResources.getDrawable(App.Instance, R.drawable.ic_back));
 				mBinding.menuBar.setNavigationOnClickListener(this);
@@ -174,9 +175,10 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 			return;
 		}
 		Fragment fragment = mBinding.getFragment();
+		mStackedEntries.pop();
 		fragment.getChildFragmentManager()
 		        .popBackStack();
-		mBinding.menuBar.setTitle(mStackedEntries.pop().getLabel());
+		mBinding.menuBar.setTitle(mStackedEntries.peek().getLabel());
 	}
 
 	@Override
