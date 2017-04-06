@@ -9,6 +9,10 @@
             type="com.demo.navigator.ds.model.Entry"/>
 
         <variable
+            name="isSelected"
+            type="boolean"/>
+
+        <variable
             name="viewholder"
             type="com.demo.navigator.navigation.EntryFragment.EntryViewHolder"/>
     </data>
@@ -23,6 +27,8 @@
 
         <TextView
             android:id="@+id/label_tv"
+            android:drawableStart="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
+            android:drawableLeft="@{isSelected? @drawable/ic_arrow : @drawable/empty}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"

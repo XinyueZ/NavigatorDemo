@@ -24,6 +24,8 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
+import static android.support.v7.widget.RecyclerView.NO_POSITION;
+
 
 public final class EntryFragment extends Fragment {
 	private static final String EXTRAS_ENTRY = EntryFragment.class.getName() + ".EXTRAS.entry";
@@ -78,6 +80,7 @@ public final class EntryFragment extends Fragment {
 		private static final int ITEM_TYPE_NODE = 1;
 		private static final int ITEM_TYPE_LINK = 2;
 		private final @NonNull List<Entry> mEntries;
+		private int melectedPosition = NO_POSITION;
 
 		public EntryListAdapter(@NonNull List<Entry> entries) {
 			mEntries = entries;
@@ -101,13 +104,14 @@ public final class EntryFragment extends Fragment {
 					                                             .inflate(ITEM_LAYOUT_LINK, parent, false));
 					break;
 			}
-			return new EntryViewHolder(binding, mEntries);
+			return new EntryViewHolder(binding, mEntries, this);
 		}
 
 		@Override
 		public void onBindViewHolder(EntryViewHolder holder, int position) {
 			holder.mBinding.setVariable(BR.entry, mEntries.get(position));
 			holder.mBinding.setVariable(BR.viewholder, holder);
+			holder.mBinding.setVariable(BR.isSelected, melectedPosition == position);
 			holder.mBinding.executePendingBindings();
 		}
 
@@ -136,16 +140,25 @@ public final class EntryFragment extends Fragment {
 		private ViewDataBinding mBinding;
 		private final EntryClickEvent mEntryClickedEvent = new EntryClickEvent();
 		private final @NonNull List<Entry> mEntries;
+		private final EntryListAdapter mEntryListAdapter;
 
-		private EntryViewHolder(ViewDataBinding binding, @NonNull List<Entry> entries) {
+		private EntryViewHolder(ViewDataBinding binding, @NonNull List<Entry> entries, EntryListAdapter adapter) {
 			super(binding.getRoot());
 			mEntries = entries;
 			mBinding = binding;
+			mEntryListAdapter = adapter;
 		}
 
 		public void onEntryClicked() {
-			int pos = getAdapterPosition();
-			mEntryClickedEvent.setEntry(mEntries.get(pos));
+			if (mEntryListAdapter.melectedPosition != NO_POSITION) {
+				mEntryListAdapter.notifyItemChanged(mEntryListAdapter.melectedPosition);
+			}
+			if (getAdapterPosition() == NO_POSITION) {
+				return;
+			}
+			mEntryListAdapter.melectedPosition = getAdapterPosition();
+			mEntryClickedEvent.setEntry(mEntries.get(mEntryListAdapter.melectedPosition));
+			mEntryListAdapter.notifyItemChanged(mEntryListAdapter.melectedPosition);
 			EventBus.getDefault()
 			        .post(mEntryClickedEvent);
 		}
