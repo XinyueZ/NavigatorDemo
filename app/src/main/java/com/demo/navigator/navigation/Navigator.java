@@ -57,6 +57,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 	@Override
 	public void start(ViewDataBinding binding) {
 		mBinding = (FragmentNavigatorBinding) binding;
+		setupMenuBar();
 		mView.showEntry();
 	}
 
@@ -67,7 +68,6 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				if (mBinding == null) {
 					return;
 				}
-				setupMenuBar();
 				navigateEntry(entry, true);
 				mBinding.getFragment()
 				        .getChildFragmentManager()
