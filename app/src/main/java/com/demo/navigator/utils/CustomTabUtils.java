@@ -10,13 +10,13 @@ import android.support.v4.content.ContextCompat;
 
 import com.demo.navigator.R;
 import com.demo.navigator.app.App;
-import com.demo.navigator.customtab.BrowserFallback;
-import com.demo.navigator.customtab.CustomTabActivityHelper;
+import com.demo.navigator.customtabs.BrowserFallback;
+import com.demo.navigator.customtabs.CustomTabsActivityHelper;
 
 
 public final class CustomTabUtils {
 	private static final BrowserFallback FALLBACK = new BrowserFallback();
-	private static final CustomTabActivityHelper HELPER = new CustomTabActivityHelper();
+	private static final CustomTabsActivityHelper HELPER = new CustomTabsActivityHelper();
 	private static final int BAR_COLOR = ContextCompat.getColor(App.Instance, R.color.colorPrimary);
 
 	public static void bind(Context cxt, @NonNull String... urls) {
@@ -36,12 +36,12 @@ public final class CustomTabUtils {
 		if (activity == null) {
 			return;
 		}
-		CustomTabActivityHelper.openCustomTab(activity,
-		                                      new CustomTabsIntent.Builder().setShowTitle(true)
+		CustomTabsActivityHelper.openCustomTab(activity,
+		                                       new CustomTabsIntent.Builder().setShowTitle(true)
 		                                                                    .setToolbarColor(BAR_COLOR)
 		                                                                    .build(),
-		                                      title,
-		                                      uri,
-		                                      FALLBACK);
+		                                       title,
+		                                       uri,
+		                                       FALLBACK);
 	}
 }

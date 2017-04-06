@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package com.demo.navigator.customtab;
+package com.demo.navigator.customtabs;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -25,7 +25,7 @@ import com.demo.navigator.app.App;
 /**
  * A Fallback that opens a browser when Custom Tabs is not available
  */
-public final class BrowserFallback implements CustomTabActivityHelper.CustomTabFallback {
+public final class BrowserFallback implements CustomTabsActivityHelper.CustomTabFallback {
 	@Override
 	public void openUrl(Activity activity, String title, @NonNull Uri uri) {
 		try {

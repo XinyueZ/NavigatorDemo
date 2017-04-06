@@ -6,6 +6,9 @@ import com.google.gson.Gson;
 import io.reactivex.Observable;
 import retrofit2.mock.BehaviorDelegate;
 
+/**
+ * To improve performance when testing we use local data (mock data) to simplify testing.
+ */
 public final class MockService implements Service {
 	private final BehaviorDelegate<Service> mDelegate;
 	private static final String FEEDS = "{\n" + "\t\"navigationEntries\": [{\n" + "\t\t\"type\": \"section\",\n" + "\t\t\"label\": \"Sortiment\",\n" + "\t\t\"children\": [{\n" + "\t\t\t\"type\": " +

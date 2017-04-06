@@ -1,4 +1,4 @@
-package com.demo.navigator.customtab;
+package com.demo.navigator.customtabs;
 
 
 import android.app.Activity;
@@ -13,7 +13,7 @@ import android.support.customtabs.CustomTabsSession;
 
 import java.util.List;
 
-public final class CustomTabActivityHelper implements ServiceConnectionCallback {
+public final class CustomTabsActivityHelper implements ServiceConnectionCallback {
 	private CustomTabsSession mCustomTabsSession;
 	private CustomTabsClient mClient;
 	private CustomTabsServiceConnection mConnection;
@@ -58,9 +58,9 @@ public final class CustomTabActivityHelper implements ServiceConnectionCallback 
 	 * Binds the Activity to the Custom Tabs Service.
 	 *
 	 * @param cxt the {@link Context} that is connected to the service.
-	 * @return {@link CustomTabActivityHelper}
+	 * @return {@link CustomTabsActivityHelper}
 	 */
-	public CustomTabActivityHelper bindCustomTabsService(Context cxt) {
+	public CustomTabsActivityHelper bindCustomTabsService(Context cxt) {
 		if (mClient != null) {
 			return this;
 		}
