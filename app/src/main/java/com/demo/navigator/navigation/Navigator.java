@@ -110,10 +110,10 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				return;
 			default:
 				//Navigate to next entry
-				mBinding.navigatorContentFl.show(0, 0, 800);
 				navigateTo(e.getEntry(), false);
 				mBinding.menuBar.setTitle(e.getEntry()
 				                           .getLabel());
+				mBinding.navigatorContentFl.show(0, 0, 800);
 				break;
 		}
 	}
