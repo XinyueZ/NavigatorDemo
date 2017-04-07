@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.demo.navigator.ds.model.Entry;
 import com.demo.navigator.ds.model.NavigationEntries;
-import com.demo.navigator.retrofit.Backend;
+import com.demo.navigator.retrofit.Service;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,23 +16,26 @@ import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public final class DsRemoteSource implements DsSource {
+	private final Service mService;
 
 	@Inject
-	public DsRemoteSource() {}
+	public DsRemoteSource(@NonNull  Service service) {
+		mService = service;
+	}
 
 
 	@Override
 	public void loadEntry(@NonNull
 	                      final EntryLoadedCallback callback) {
-		Backend.Instance.getNavigationEntries()
-		                .subscribeOn(Schedulers.io())
-		                .observeOn(AndroidSchedulers.mainThread())
-		                .subscribe(new Consumer<NavigationEntries>() {
-			                @Override
-			                public void accept(NavigationEntries navigationEntries) throws Exception {
-				                Entry rebuiltEntry = new Entry("root", "root", null, navigationEntries.getEntries());
-				                callback.onLoaded(rebuiltEntry);
-			                }
-		                });
+		mService.getNavigationEntries()
+		        .subscribeOn(Schedulers.io())
+		        .observeOn(AndroidSchedulers.mainThread())
+		        .subscribe(new Consumer<NavigationEntries>() {
+			        @Override
+			        public void accept(NavigationEntries navigationEntries) throws Exception {
+				        Entry rebuiltEntry = new Entry("root", "root", null, navigationEntries.getEntries());
+				        callback.onLoaded(rebuiltEntry);
+			        }
+		        });
 	}
 }

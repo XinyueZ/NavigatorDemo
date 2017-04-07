@@ -6,6 +6,8 @@ Show demo how we navigate in Android App generally.
 
 ### Version Change
 
+[v0.2.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.1)
+> Make Retrofit2 into Dagger2's Module in order to improve independence between network and business.
 
 [v0.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2)
 > Bug-fix, more test-cases and tools.
