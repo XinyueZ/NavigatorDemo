@@ -9,13 +9,14 @@ Show demo how we navigate in Android App generally.
 - [Model–view–presenter(MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
 - [Dagger2](https://google.github.io/dagger/) 
 - [Retrofit2](http://square.github.io/retrofit/) 
-- [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
 - [EventBus](https://github.com/greenrobot/EventBus) 
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
 - [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) 
 
 
 ### Design pattern
 
+- [Bridge](https://en.wikipedia.org/wiki/Bridge_pattern)
 - [Composite](https://en.wikipedia.org/wiki/Composite_pattern)
 - [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern)
 - [Model–view–presenter(MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
@@ -43,9 +44,9 @@ There are only 2 types to represent how navigation-data will be generated, the `
 
 Also you get that there are four ```Entry``` types:
 
-- section: represented in JSON as"type": "section"
 - node: represented in JSON as "type": "node"
 - link: represented in JSON as "type": "link"
+- section: represented in JSON as"type": "section"
 - external-link: represented in JSON as "type": "external-link"
 
 Here we use different layouts to represent them.
