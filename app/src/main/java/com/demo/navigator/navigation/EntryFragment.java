@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public final class EntryFragment extends Fragment {
 		private static final int ITEM_TYPE_NODE = 1;
 		private static final int ITEM_TYPE_LINK = 2;
 		private final @NonNull List<Entry> mEntries;
-		private int melectedPosition = NO_POSITION;
+		private int mSelectedPosition = NO_POSITION;
 
 		public EntryListAdapter(@NonNull List<Entry> entries) {
 			mEntries = entries;
@@ -120,9 +121,9 @@ public final class EntryFragment extends Fragment {
 		public void onBindViewHolder(EntryViewHolder holder, int position) {
 			holder.mBinding.setVariable(BR.entry, mEntries.get(position));
 			holder.mBinding.setVariable(BR.viewholder, holder);
-			holder.mBinding.setVariable(BR.isSelected, melectedPosition == position);
+			holder.mBinding.setVariable(BR.isSelected, mSelectedPosition == position);
 			if (TextUtils.equals(mEntries.get(position)
-			                             .getType(), "link")) {
+			                             .getType(), "external-link")) {
 				CustomTabUtils.bind(App.Instance,
 				                    mEntries.get(position)
 				                            .getUrl());
@@ -165,15 +166,15 @@ public final class EntryFragment extends Fragment {
 		}
 
 		public void onEntryClicked() {
-			if (mEntryListAdapter.melectedPosition != NO_POSITION) {
-				mEntryListAdapter.notifyItemChanged(mEntryListAdapter.melectedPosition);
+			if (mEntryListAdapter.mSelectedPosition != NO_POSITION) {
+				mEntryListAdapter.notifyItemChanged(mEntryListAdapter.mSelectedPosition);
 			}
 			if (getAdapterPosition() == NO_POSITION) {
 				return;
 			}
-			mEntryListAdapter.melectedPosition = getAdapterPosition();
-			mEntryClickedEvent.setEntry(mEntries.get(mEntryListAdapter.melectedPosition));
-			mEntryListAdapter.notifyItemChanged(mEntryListAdapter.melectedPosition);
+			mEntryListAdapter.mSelectedPosition = getAdapterPosition();
+			mEntryClickedEvent.setEntry(mEntries.get(mEntryListAdapter.mSelectedPosition));
+			mEntryListAdapter.notifyItemChanged(mEntryListAdapter.mSelectedPosition);
 			EventBus.getDefault()
 			        .post(mEntryClickedEvent);
 		}
