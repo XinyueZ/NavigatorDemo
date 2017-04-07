@@ -7,7 +7,7 @@ Show demo how we navigate in Android App generally.
 ### Version Change
 
 
-v0.2
+[v0.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2)
 > Bug-fix, more test-cases and tools.
 - Payload external-link by custom-tabs not "link".
 - Added a common method ```rebuildForSections``` to rebuild entry-list if it's children have sections. A section gives our children entries, the method makes children as siblings of sections on the same UI-level. 
