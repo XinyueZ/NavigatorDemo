@@ -20,13 +20,13 @@
             android:id="@+id/menu_bar"
             style="@style/MenuBar"/>
 
-        <com.demo.navigator.utils.RevealLayout
+        <FrameLayout
             android:id="@+id/navigator_content_fl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
             <include layout="@layout/layout_loading"/>
-        </com.demo.navigator.utils.RevealLayout>
+        </FrameLayout>
     </LinearLayout>
 </layout>

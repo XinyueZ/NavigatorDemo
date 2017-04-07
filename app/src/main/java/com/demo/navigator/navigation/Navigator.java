@@ -118,7 +118,6 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				navigateTo(e.getEntry(), false);
 				mBinding.menuBar.setTitle(e.getEntry()
 				                           .getLabel());
-				mBinding.navigatorContentFl.show(0, 0, 800);
 				break;
 		}
 	}
@@ -156,7 +155,8 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		if (activity != null) {
 			FragmentTransaction transaction = fragment.getChildFragmentManager()
 			                                          .beginTransaction()
-			                                          .add(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, rebuiltEntry));
+			                                          .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right )
+			                                          .replace(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, rebuiltEntry));
 
 
 			mStackedEntries.push(rebuiltEntry);
