@@ -91,7 +91,9 @@ Here we use different layouts to represent them.
 After v0.1 there's a new branch [dev](https://github.com/XinyueZ/NavigatorDemo/tree/dev) for more developments.
 
 v0.2
-> still to  come....
+> Bug-fix, more test-cases and tools.
+- Payload external-link by custom-tabs not "link".
+- Added a common method ```rebuildForSections``` to rebuild entry-list if it's children have sections. A section gives our children entries, the method makes children as siblings of sections on the same UI-level. 
 
 ### LICENSE
 
