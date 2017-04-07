@@ -10,19 +10,18 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.demo.navigator.BR;
-import com.demo.navigator.app.App;
-import com.demo.navigator.utils.CustomTabUtils;
-import com.demo.navigator.utils.ListDivider;
 import com.demo.navigator.R;
+import com.demo.navigator.app.App;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.databinding.FragmentEntryBinding;
 import com.demo.navigator.ds.model.Entry;
+import com.demo.navigator.utils.CustomTabUtils;
+import com.demo.navigator.utils.ListDivider;
 
 import java.util.List;
 
@@ -74,11 +73,11 @@ public final class EntryFragment extends Fragment {
 		mBinding.entryContentRv.addItemDecoration(new ListDivider(getContext()));
 	}
 
-	public void showEntries(@NonNull List<Entry> entries) {
+	private void showEntries(@NonNull List<Entry> entries) {
 		mBinding.entryContentRv.setAdapter(new EntryListAdapter(entries));
 	}
 
-	public void showEntry(@NonNull Entry entry) {
+	private void showEntry(@NonNull Entry entry) {
 		showEntries(entry.getChildren());
 	}
 
@@ -153,7 +152,7 @@ public final class EntryFragment extends Fragment {
 	}
 
 	public final static class EntryViewHolder extends RecyclerView.ViewHolder {
-		private ViewDataBinding mBinding;
+		private final ViewDataBinding mBinding;
 		private final EntryClickEvent mEntryClickedEvent = new EntryClickEvent();
 		private final @NonNull List<Entry> mEntries;
 		private final EntryListAdapter mEntryListAdapter;
