@@ -4,6 +4,20 @@ Show demo how we navigate in Android App generally.
 
  ![logo](photo/ic_launcher.png)
 
+### Version Change
+
+[v0.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.1_a_a)
+> First version, the app has menu now, some UITests have been added for workflow, the architecture added , etc.
+
+After v0.1 there's a new branch [dev](https://github.com/XinyueZ/NavigatorDemo/tree/dev) for more developments.
+
+v0.2
+> Bug-fix, more test-cases and tools.
+- Payload external-link by custom-tabs not "link".
+- Added a common method ```rebuildForSections``` to rebuild entry-list if it's children have sections. A section gives our children entries, the method makes children as siblings of sections on the same UI-level. 
+- Fix indicator for selected link.
+
+
 ### Architecture
 
 - [Model–view–presenter(MVP)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter)
@@ -84,18 +98,7 @@ Here we use different layouts to represent them.
 }
 ```
 
-### Version
 
-[v0.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.1_a_a)
-> The app has menu now, some UITests have been added, the architecture added , etc.
-
-After v0.1 there's a new branch [dev](https://github.com/XinyueZ/NavigatorDemo/tree/dev) for more developments.
-
-v0.2
-> Bug-fix, more test-cases and tools.
-- Payload external-link by custom-tabs not "link".
-- Added a common method ```rebuildForSections``` to rebuild entry-list if it's children have sections. A section gives our children entries, the method makes children as siblings of sections on the same UI-level. 
-- Fix indicator for selected link.
 
 ### LICENSE
 
