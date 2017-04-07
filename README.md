@@ -55,7 +55,7 @@ Here we use different layouts to represent them.
  ![Layout](photo/layout-case.png)
 
 
-#### Mocked feeds
+### Mocked feeds
 
 ```json
 {
@@ -82,6 +82,16 @@ Here we use different layouts to represent them.
 	}]
 }
 ```
+
+### Version
+
+[v0.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.1_a_a)
+> The app has menu now, some UITests have been added, the architecture added , etc.
+
+After v0.1 there's a new branch [dev](https://github.com/XinyueZ/NavigatorDemo/tree/dev) for more developments.
+
+v0.2
+> still to  come....
 
 ### LICENSE
 
