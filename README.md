@@ -17,6 +17,7 @@ v0.2
 - Payload external-link by custom-tabs not "link".
 - Added a common method ```rebuildForSections``` to rebuild entry-list if it's children have sections. A section gives our children entries, the method makes children as siblings of sections on the same UI-level. 
 - Fix indicator for selected link.
+- Animation slide-in and slide-out will be used for selection on menu.
 
 
 ### Architecture
