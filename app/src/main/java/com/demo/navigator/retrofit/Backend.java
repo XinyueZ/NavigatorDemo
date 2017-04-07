@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class Backend {
-	public static final retrofit2.Retrofit Retrofit = new Retrofit.Builder().baseUrl(App.Instance.getString(R.string.navi_url))
+	private static final retrofit2.Retrofit Retrofit = new Retrofit.Builder().baseUrl(App.Instance.getString(R.string.navi_url))
 	                                                                        .addConverterFactory(GsonConverterFactory.create())
 	                                                                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 	                                                                        .client(new OkHttpClient.Builder().addInterceptor(new Interceptor() {

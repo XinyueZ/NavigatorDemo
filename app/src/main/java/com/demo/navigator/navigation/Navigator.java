@@ -24,7 +24,9 @@ import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.DsRepository;
 import com.demo.navigator.ds.DsSource;
 import com.demo.navigator.ds.model.Entry;
+import com.demo.navigator.utils.Utils;
 
+import java.util.List;
 import java.util.Stack;
 
 import javax.inject.Inject;
@@ -142,6 +144,9 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 	}
 
 	private void navigateTo(@NonNull Entry entry, boolean isRoot) {
+		final List<Entry> entryList = Utils.rebuildForSections(entry.getChildren());
+		Entry rebuiltEntry = new Entry(entry.getType(), entry.getLabel(), entry.getUrl(), entryList);
+
 		if (mBinding == null) {
 			return;
 		}
@@ -150,10 +155,10 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		if (activity != null) {
 			FragmentTransaction transaction = fragment.getChildFragmentManager()
 			                                          .beginTransaction()
-			                                          .add(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, entry));
+			                                          .add(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, rebuiltEntry));
 
 
-			mStackedEntries.push(entry);
+			mStackedEntries.push(rebuiltEntry);
 
 			if (isRoot) {
 				transaction.commit();

@@ -7,9 +7,6 @@ import com.demo.navigator.ds.model.Entry;
 import com.demo.navigator.ds.model.NavigationEntries;
 import com.demo.navigator.retrofit.Backend;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -33,17 +30,8 @@ public final class DsRemoteSource implements DsSource {
 		                .subscribe(new Consumer<NavigationEntries>() {
 			                @Override
 			                public void accept(NavigationEntries navigationEntries) throws Exception {
-				                final List<Entry> rootList = new ArrayList<>();
-				                final List<Entry> sections = navigationEntries.getEntries();
-				                for(Entry section : sections) {
-				                	rootList.add(section);
-				                	for(Entry sectionChild : section.getChildren()) {
-						                rootList.add(sectionChild);
-					                }
-				                }
-
-				                Entry entry = new Entry("root", "root", null, rootList);
-				                callback.onLoaded(entry);
+				                Entry rebuiltEntry = new Entry("root", "root", null, navigationEntries.getEntries());
+				                callback.onLoaded(rebuiltEntry);
 			                }
 		                });
 	}

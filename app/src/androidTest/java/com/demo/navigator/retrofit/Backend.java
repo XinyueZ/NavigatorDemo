@@ -9,7 +9,7 @@ import retrofit2.mock.MockRetrofit;
 import retrofit2.mock.NetworkBehavior;
 
 public final class Backend {
-	public static final retrofit2.Retrofit Retrofit = new Retrofit.Builder().baseUrl("http://example.com/")
+	private static final retrofit2.Retrofit Retrofit = new Retrofit.Builder().baseUrl("http://example.com/")
 	                                                                        .addConverterFactory(GsonConverterFactory.create())
 	                                                                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 	                                                                        .build();
