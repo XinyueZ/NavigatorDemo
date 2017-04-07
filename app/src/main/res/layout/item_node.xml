@@ -10,7 +10,7 @@
 
         <variable
             name="viewholder"
-            type="com.demo.navigator.navigation.EntryFragment.EntryViewHolder"/>
+            type="com.demo.navigator.navigation.ui.EntryFragment.EntryViewHolder"/>
     </data>
 
     <com.demo.navigator.utils.MaterialRippleLayout
@@ -30,7 +30,7 @@
             android:drawableEnd="@drawable/ic_arrow"
             android:drawableRight="@drawable/ic_arrow"
             android:gravity="center_vertical"
-            android:text="@{entry.getLabel()}"
+            android:text="@{entry.label}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@color/colorBlack"
             tools:text="Node"/>

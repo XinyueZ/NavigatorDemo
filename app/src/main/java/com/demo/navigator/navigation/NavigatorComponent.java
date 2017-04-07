@@ -3,6 +3,7 @@ package com.demo.navigator.navigation;
 
 import com.demo.navigator.app.FragmentScoped;
 import com.demo.navigator.ds.DsRepositoryComponent;
+import com.demo.navigator.navigation.ui.NavigatorFragment;
 
 import dagger.Component;
 

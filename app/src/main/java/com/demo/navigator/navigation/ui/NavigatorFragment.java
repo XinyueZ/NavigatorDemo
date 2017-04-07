@@ -1,4 +1,4 @@
-package com.demo.navigator.navigation;
+package com.demo.navigator.navigation.ui;
 
 
 import android.databinding.DataBindingUtil;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import com.demo.navigator.R;
 import com.demo.navigator.app.App;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
+import com.demo.navigator.navigation.DaggerNavigatorComponent;
+import com.demo.navigator.navigation.Navigator;
+import com.demo.navigator.navigation.NavigatorContract;
+import com.demo.navigator.navigation.NavigatorModule;
 
 import javax.inject.Inject;
 

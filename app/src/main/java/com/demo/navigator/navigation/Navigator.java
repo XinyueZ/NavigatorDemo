@@ -19,6 +19,7 @@ import com.demo.navigator.app.App;
 import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.bus.OpenUriEvent;
+import com.demo.navigator.navigation.ui.EntryFragment;
 import com.demo.navigator.utils.CustomTabUtils;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.DsRepository;
@@ -62,7 +63,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		mView.showEntry();
 	}
 
-	void load() {
+	public void load() {
 		mDsRepository.loadEntry(new DsSource.EntryLoadedCallback() {
 			@Override
 			public void onLoaded(@NonNull Entry entry) {

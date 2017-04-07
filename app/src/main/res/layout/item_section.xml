@@ -10,7 +10,7 @@
 
         <variable
             name="viewholder"
-            type="com.demo.navigator.navigation.EntryFragment.EntryViewHolder"/>
+            type="com.demo.navigator.navigation.ui.EntryFragment.EntryViewHolder"/>
     </data>
 
     <com.demo.navigator.utils.MaterialRippleLayout
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="@{entry.getLabel()}"
+            android:text="@{entry.label}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:textColor="@color/colorPrimaryDark"
             tools:text="Section"/>
