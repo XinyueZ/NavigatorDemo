@@ -35,6 +35,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.demo.navigator.ds.DaggerDsRepositoryComponent;
 import com.demo.navigator.ds.DsRepositoryComponent;
+import com.google.gson.Gson;
 
 
 /**
@@ -55,6 +56,7 @@ public final class App extends MultiDexApplication {
 	}
 
 
+	private final Gson mGson = new Gson();
 
 
 	private DsRepositoryComponent mRepositoryComponent;
@@ -64,7 +66,7 @@ public final class App extends MultiDexApplication {
 		super.onCreate();
 
 		mRepositoryComponent = DaggerDsRepositoryComponent.builder()
-		                                                  .applicationModule(new ApplicationModule((getApplicationContext())))
+		                                                  .applicationModule(new ApplicationModule(this))
 		                                                  .build();
 
 	}
@@ -72,5 +74,9 @@ public final class App extends MultiDexApplication {
 
 	public DsRepositoryComponent getRepositoryComponent() {
 		return mRepositoryComponent;
+	}
+
+	public Gson getGson() {
+		return mGson;
 	}
 }

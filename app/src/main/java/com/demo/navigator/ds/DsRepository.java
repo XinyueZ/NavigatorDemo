@@ -18,6 +18,9 @@ package com.demo.navigator.ds;
 
 import android.support.annotation.NonNull;
 
+import com.demo.navigator.app.App;
+import com.demo.navigator.utils.NetworkUtils;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -25,16 +28,23 @@ import javax.inject.Singleton;
 @Singleton
 public class DsRepository implements DsSource {
 
-	private DsSource mRemoteDs;
-
+	private final App mApp;
+	private final DsSource mRemoteDs;
+	private final DsSource mLocalDs;
 
 	@Inject
-	DsRepository(@Remote DsSource remoteDs) {
+	DsRepository(@NonNull App app, @Remote DsSource remoteDs, @Local DsSource localDs) {
+		mApp = app;
 		mRemoteDs = remoteDs;
+		mLocalDs = localDs;
 	}
 
 	@Override
 	public void loadEntry(@NonNull EntryLoadedCallback callback) {
-		mRemoteDs.loadEntry(callback);
+		if (NetworkUtils.isAirplaneModeOn(mApp) || !NetworkUtils.isOnline(mApp)) {
+			mLocalDs.loadEntry(callback);
+		} else {
+			mRemoteDs.loadEntry(callback);
+		}
 	}
 }

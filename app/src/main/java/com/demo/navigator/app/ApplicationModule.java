@@ -1,21 +1,19 @@
 package com.demo.navigator.app;
 
-import android.content.Context;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public final class ApplicationModule {
 
-    private final Context mContext;
+    private final App mApp;
 
-    ApplicationModule(Context context) {
-        mContext = context;
+    ApplicationModule(App app) {
+        mApp = app;
     }
 
     @Provides
-    Context provideContext() {
-        return mContext;
+    App provideApp() {
+        return mApp;
     }
 }

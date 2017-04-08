@@ -6,6 +6,9 @@ Show demo how we navigate in Android App generally.
 
 ### Version Chang
 
+[v0.2.3](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.3)
+> Offline is available.
+
 [v0.2.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.2)
 > UI changed, performance for rebuilding on list etc.
 - Shrink of height of link, node entry.
