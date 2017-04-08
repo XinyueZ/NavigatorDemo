@@ -9,6 +9,11 @@ Show demo how we navigate in Android App generally.
 [v0.2.3](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.3)
 > Offline is available.
 
+- Support showing menu if offline. 
+1. Show nothing if the App has never be online.
+2. Show last loaded menu if the App was once online and now is offline.
+
+
 [v0.2.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.2)
 > UI changed, performance for rebuilding on list etc.
 - Shrink of height of link, node entry.
@@ -66,6 +71,8 @@ All other branches are feature, bug-fix or versions, they are not persistent and
 
 In order to improve testing performance of business-logical we mock internet remove feeds, see ```MockService``` .
 
+
+
 ### Data Structure
 
 There are only 2 types to represent how navigation-data will be generated, the ```Entry``` and ```NavigationEntries``` which is aggregated by ```Entry```.
@@ -86,7 +93,10 @@ Here we use different layouts to represent them.
 ```ìtem-section.xml``` ```ìtem-node.xml``` ```ìtem-link.xml``` (also for external-link)
 
  ![Layout](photo/layout-case.png)
+ 
+ ## Data flow
 
+![flow](photo/architecture.png)
 
 ### Mocked feeds
 
