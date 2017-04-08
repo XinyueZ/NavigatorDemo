@@ -77,7 +77,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 					return;
 				}
 				mBinding.navigatorContentFl.removeAllViews();
-				navigateTo(entry, isRoot(entry));
+				navigateTo(entry);
 				mBinding.getFragment()
 				        .getChildFragmentManager()
 				        .addOnBackStackChangedListener(Navigator.this);
@@ -124,7 +124,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				return;
 			default:
 				//Navigate to next entry
-				navigateTo(e.getEntry(), false);
+				navigateTo(e.getEntry());
 				mBinding.menuBar.setTitle(e.getEntry()
 				                           .getLabel());
 				break;
@@ -152,7 +152,7 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		return false;
 	}
 
-	private void navigateTo(@NonNull Entry entry, final boolean isRoot) {
+	private void navigateTo(@NonNull Entry entry) {
 		Observable.just(entry)
 		          .subscribeOn(Schedulers.newThread())
 		          .map(new Function<Entry, Entry>() {
