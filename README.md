@@ -10,7 +10,7 @@ Show demo how we navigate in Android App generally.
 > Offline is available.
 
 - Support showing menu if offline. 
-1. Show nothing if the App has never be online.
+1. Show nothing if the App has never been online.
 2. Show last loaded menu if the App was once online and now is offline.
 
 
