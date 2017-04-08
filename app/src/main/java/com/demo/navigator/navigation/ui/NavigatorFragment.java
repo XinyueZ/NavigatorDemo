@@ -24,30 +24,27 @@ import de.greenrobot.event.EventBus;
 public final class NavigatorFragment extends Fragment implements NavigatorContract.View {
 	private static final int LAYOUT = R.layout.fragment_navigator;
 	@Inject Navigator mNavigator;
-	private FragmentNavigatorBinding mBinding;
 
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		mBinding = DataBindingUtil.inflate(inflater, LAYOUT, container, false);
-		mBinding.setFragment(this);
-		return mBinding.getRoot();
-	}
+		FragmentNavigatorBinding binding = DataBindingUtil.inflate(inflater, LAYOUT, container, false);
+		binding.setFragment(this);
 
-	@Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
 		DaggerNavigatorComponent.builder()
-		                        .navigatorModule(new NavigatorModule(this))
+		                        .navigatorModule(new NavigatorModule(this, binding))
 		                        .dsRepositoryComponent((App.Instance).getRepositoryComponent())
 		                        .build()
 		                        .inject(this);
+
+		return binding.getRoot();
 	}
+
 
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mNavigator.start(mBinding);
+		mNavigator.start();
 	}
 
 	@Override

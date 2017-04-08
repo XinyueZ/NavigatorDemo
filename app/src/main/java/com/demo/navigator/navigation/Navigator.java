@@ -2,7 +2,6 @@ package com.demo.navigator.navigation;
 
 
 import android.app.Activity;
-import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -58,13 +57,13 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 
 
 	@Inject
-	void onReadySetPresenter() {
+	void onReadySetPresenter(FragmentNavigatorBinding binding) {
+		mBinding = binding;
 		mView.setPresenter(this);
 	}
 
 	@Override
-	public void start(ViewDataBinding binding) {
-		mBinding = (FragmentNavigatorBinding) binding;
+	public void start() {
 		setupMenuBar();
 		mView.showEntry();
 	}

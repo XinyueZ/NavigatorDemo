@@ -20,6 +20,6 @@ import android.databinding.ViewDataBinding;
 
 public interface BasePresenter {
 
-    void start(ViewDataBinding binding);
+    void start();
 
 }
