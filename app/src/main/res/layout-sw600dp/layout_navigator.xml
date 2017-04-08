@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <fragment
+        android:id="@+id/navigator_fg"
+        android:name="com.demo.navigator.navigation.ui.NavigatorFragment"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|left"
+        android:fitsSystemWindows="true"/>
+
+
+</merge>

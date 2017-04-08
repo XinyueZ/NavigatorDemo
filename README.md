@@ -13,6 +13,7 @@ Show demo how we navigate in Android App generally.
 - Used dagger2 to provide ```FragmentNavigatorBinding```.
 - Added [Espresso Web](https://google.github.io/android-testing-support-library/docs/espresso/web/) for ```link``` type to open ```webview```. 
 - Added test for loading webview by ```link```.
+- Improved UI of menu on *tablet* (>=sw600) and *landscape*.
 
 [v0.2.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.1)
 > Make Retrofit2 into Dagger2's Module in order to improve independence between network and business.

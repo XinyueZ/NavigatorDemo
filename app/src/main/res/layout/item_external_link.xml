@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_open"
             android:drawableRight="@drawable/ic_open"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:text="@{entry.label}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"

@@ -29,8 +29,8 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                     <FrameLayout
                         android:id="@+id/appbar_content"
@@ -50,15 +50,7 @@
 
         </FrameLayout>
 
-
-        <fragment
-            android:id="@+id/navigator_fg"
-            android:name="com.demo.navigator.navigation.ui.NavigatorFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start|left"
-            android:fitsSystemWindows="true"/>
-
+        <include layout="@layout/layout_navigator"/>
     </android.support.v4.widget.DrawerLayout>
 
 </layout>

@@ -33,6 +33,7 @@
         <TextView
             android:id="@+id/label_tv"
             android:layout_width="match_parent"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:drawableLeft="@{isSelected ? @drawable/ic_arrow : @drawable/empty}"
             android:drawableStart="@{isSelected ? @drawable/ic_arrow : @drawable/empty}"
