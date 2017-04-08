@@ -4,7 +4,13 @@ Show demo how we navigate in Android App generally.
 
  ![logo](photo/ic_launcher.png)
 
-### Version Change
+### Version Chang
+
+[v0.2.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.2)
+> UI changed, performance for rebuilding on list etc.
+- Shrink height of link, node entry.
+- Use Rx to rebuild list.
+- Use dagger2 to provide ```FragmentNavigatorBinding```.
 
 [v0.2.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.1)
 > Make Retrofit2 into Dagger2's Module in order to improve independence between network and business.
