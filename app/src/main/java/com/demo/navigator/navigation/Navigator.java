@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,12 +20,12 @@ import com.demo.navigator.app.App;
 import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.bus.EntryClickEvent;
 import com.demo.navigator.bus.OpenUriEvent;
-import com.demo.navigator.navigation.ui.EntryFragment;
-import com.demo.navigator.utils.CustomTabUtils;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.DsRepository;
 import com.demo.navigator.ds.DsSource;
 import com.demo.navigator.ds.model.Entry;
+import com.demo.navigator.navigation.ui.EntryFragment;
+import com.demo.navigator.utils.CustomTabUtils;
 import com.demo.navigator.utils.Utils;
 
 import java.util.List;
@@ -34,6 +35,11 @@ import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public final class Navigator implements Toolbar.OnMenuItemClickListener,
                                         View.OnClickListener,
@@ -72,12 +78,16 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 					return;
 				}
 				mBinding.navigatorContentFl.removeAllViews();
-				navigateTo(entry, true);
+				navigateTo(entry, isRoot(entry));
 				mBinding.getFragment()
 				        .getChildFragmentManager()
 				        .addOnBackStackChangedListener(Navigator.this);
 			}
 		});
+	}
+
+	private boolean isRoot(@NonNull Entry entry) {
+		return TextUtils.equals("root", entry.getType());
 	}
 
 
@@ -143,10 +153,28 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		return false;
 	}
 
-	private void navigateTo(@NonNull Entry entry, boolean isRoot) {
-		final List<Entry> entryList = Utils.rebuildForSections(entry.getChildren());
-		Entry rebuiltEntry = new Entry(entry.getType(), entry.getLabel(), entry.getUrl(), entryList);
+	private void navigateTo(@NonNull Entry entry, final boolean isRoot) {
+		Observable.just(entry)
+		          .subscribeOn(Schedulers.newThread())
+		          .map(new Function<Entry, Entry>() {
+			          @Override
+			          public Entry apply(@NonNull Entry entry) throws Exception {
+				          final List<Entry> entryList = Utils.rebuildForSections(entry.getChildren());
+				          return new Entry(entry.getType(), entry.getLabel(), entry.getUrl(), entryList);
+			          }
+		          })
+		          .observeOn(AndroidSchedulers.mainThread())
+		          .subscribe(new Consumer<Entry>() {
+			                     @Override
+			                     public void accept(@NonNull Entry rebuiltEntry) throws Exception {
+				                     showEntry(rebuiltEntry, isRoot(rebuiltEntry));
+			                     }
+		                     }
 
+		          );
+	}
+
+	private void showEntry(Entry rebuiltEntry, boolean isRoot) {
 		if (mBinding == null) {
 			return;
 		}
@@ -155,17 +183,13 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 		if (activity != null) {
 			FragmentTransaction transaction = fragment.getChildFragmentManager()
 			                                          .beginTransaction()
-			                                          .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right )
+			                                          .setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 			                                          .replace(mBinding.navigatorContentFl.getId(), EntryFragment.newInstance(activity, rebuiltEntry));
-
-
 			mStackedEntries.push(rebuiltEntry);
-
 			if (isRoot) {
 				transaction.commit();
 				return;
 			}
-
 			transaction.addToBackStack(null)
 			           .commit();
 			if (mBinding.menuBar.getNavigationIcon() == null) {
