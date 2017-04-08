@@ -8,9 +8,11 @@ Show demo how we navigate in Android App generally.
 
 [v0.2.2](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.2)
 > UI changed, performance for rebuilding on list etc.
-- Shrink height of link, node entry.
-- Use Rx to rebuild list.
-- Use dagger2 to provide ```FragmentNavigatorBinding```.
+- Shrinked height of link, node entry.
+- Used Rx to rebuild list.
+- Used dagger2 to provide ```FragmentNavigatorBinding```.
+- Added [Espresso Web](https://google.github.io/android-testing-support-library/docs/espresso/web/) for ```link``` type to open ```webview```. 
+- Added test for loading webview by ```link```.
 
 [v0.2.1](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.1)
 > Make Retrofit2 into Dagger2's Module in order to improve independence between network and business.
