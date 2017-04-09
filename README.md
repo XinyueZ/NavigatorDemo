@@ -50,6 +50,8 @@ All other branches are feature, bug-fix or versions, they are not persistent and
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
 - [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) 
 
+##### MVP & Data flow
+![flow](photo/architecture.png)
 
 ### Design pattern
 
@@ -94,9 +96,7 @@ Here we use different layouts to represent them.
 
  ![Layout](photo/layout-case.png)
  
- ## Data flow
 
-![flow](photo/architecture.png)
 
 ### Mocked feeds
 
