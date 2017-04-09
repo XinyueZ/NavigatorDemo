@@ -16,8 +16,6 @@
 
 package com.demo.navigator.app.mvp;
 
-import android.databinding.ViewDataBinding;
-
 public interface BasePresenter {
 
     void start();
