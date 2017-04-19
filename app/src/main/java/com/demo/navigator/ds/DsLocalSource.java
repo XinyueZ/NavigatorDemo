@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
-import com.demo.navigator.R;
 import com.demo.navigator.app.App;
-import com.demo.navigator.bus.MessageEvent;
 import com.demo.navigator.ds.model.Entry;
 import com.demo.navigator.ds.model.NavigationEntries;
 
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import de.greenrobot.event.EventBus;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -56,8 +53,6 @@ public final class DsLocalSource implements DsSource {
 		          .subscribe(new Consumer<Entry>() {
 			                     @Override
 			                     public void accept(@NonNull Entry rebuiltEntry) throws Exception {
-				                     EventBus.getDefault()
-				                             .post(new MessageEvent(R.string.offline));
 				                     callback.onLoaded(rebuiltEntry);
 			                     }
 		                     }

@@ -18,11 +18,16 @@ package com.demo.navigator.ds;
 
 import android.support.annotation.NonNull;
 
+import com.demo.navigator.R;
 import com.demo.navigator.app.App;
-import com.demo.navigator.utils.NetworkUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import static android.net.ConnectivityManager.TYPE_WIFI;
+import static com.demo.navigator.utils.NetworkUtils.getCurrentNetworkType;
+import static com.demo.navigator.utils.NetworkUtils.isAirplaneModeOn;
+import static com.demo.navigator.utils.NetworkUtils.isOnline;
 
 
 @Singleton
@@ -41,10 +46,16 @@ public class DsRepository implements DsSource {
 
 	@Override
 	public void loadEntry(@NonNull EntryLoadedCallback callback) {
-		if (NetworkUtils.isAirplaneModeOn(mApp) || !NetworkUtils.isOnline(mApp)) {
+		if (isAirplaneModeOn(mApp) || !isOnline(mApp)) {
 			mLocalDs.loadEntry(callback);
+			callback.onTextMessage(R.string.offline);
 		} else {
-			mRemoteDs.loadEntry(callback);
+			if (getCurrentNetworkType(mApp) != TYPE_WIFI) {
+				mLocalDs.loadEntry(callback);
+				callback.onTextMessage(R.string.mobile_network);
+			} else {
+				mRemoteDs.loadEntry(callback);
+			}
 		}
 	}
 }

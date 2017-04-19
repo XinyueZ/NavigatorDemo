@@ -12,6 +12,7 @@ Show demo how we navigate in Android App generally.
 1. App uses last cached data like "offline".
 2. App compare with last loading-time, if < 5 mins then loading from net instead "offline".
 3. App saves last loaded data as cache data.
+4. Added ```onTextMessage``` in ```EntryLoadedCallback``` so that presenter can post UI text-message if repository will be changed.
 
 [v0.2.3](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.3)
 > Offline is available.

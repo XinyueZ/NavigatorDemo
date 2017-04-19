@@ -75,8 +75,9 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	 * @param e Event {@link MessageEvent}.
 	 */
 	@SuppressWarnings("unused")
-	@Subscribe
+	@Subscribe(sticky = true)
 	public void onEvent(MessageEvent e) {
+		EventBus.getDefault().removeStickyEvent(e);
 		showIndefiniteSnackbar(e.getMessage());
 	}
 	//------------------------------------------------

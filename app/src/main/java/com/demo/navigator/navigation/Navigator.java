@@ -18,6 +18,7 @@ import com.demo.navigator.R;
 import com.demo.navigator.app.App;
 import com.demo.navigator.bus.CloseNavigatorEvent;
 import com.demo.navigator.bus.EntryClickEvent;
+import com.demo.navigator.bus.MessageEvent;
 import com.demo.navigator.bus.OpenUriEvent;
 import com.demo.navigator.databinding.FragmentNavigatorBinding;
 import com.demo.navigator.ds.DsRepository;
@@ -81,6 +82,12 @@ public final class Navigator implements Toolbar.OnMenuItemClickListener,
 				mBinding.getFragment()
 				        .getChildFragmentManager()
 				        .addOnBackStackChangedListener(Navigator.this);
+			}
+
+			@Override
+			public void onTextMessage(int msgResId) {
+				EventBus.getDefault()
+				        .postSticky(new MessageEvent(msgResId));
 			}
 		});
 	}

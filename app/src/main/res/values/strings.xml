@@ -6,4 +6,5 @@
     <string name="loading">Loading…</string>
     <string name="navigate_up">Navigate up</string>
     <string name="offline">You are offline. Using last cached data.</string>
+    <string name="mobile_network">You are using mobile network. Using last cached data by last caching.</string>
 </resources>
