@@ -4,7 +4,14 @@ Show demo how we navigate in Android App generally.
 
  ![logo](photo/ic_launcher.png)
 
-### Version Chang
+### Version Change
+
+[v0.2.4](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.4)
+- Support non-wifi context-handling
+> Idea of context of non-wifi is that the app should not loading feeds if the cell-network provides internet.
+1. App uses last cached data like "offline".
+2. App compare with last loading-time, if < 5 mins then loading from net instead "offline".
+3. App saves last loaded data as cache data.
 
 [v0.2.3](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.3)
 > Offline is available.
