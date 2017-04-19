@@ -42,7 +42,7 @@ public final class DsRemoteSource implements DsSource {
 			        public Entry apply(NavigationEntries navigationEntries) throws Exception {
 				        String json = mApp.getGson()
 				                          .toJson(navigationEntries, NavigationEntries.class);
-				        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mApp)
+				        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mApp)
 				                                                                 .edit();
 				        editor.putString("menu", json);
 				        SharedPreferencesCompat.EditorCompat.getInstance()
