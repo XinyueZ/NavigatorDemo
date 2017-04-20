@@ -77,7 +77,8 @@ public abstract class AppBarActivity extends AppCompatActivity {
 	@SuppressWarnings("unused")
 	@Subscribe(sticky = true)
 	public void onEvent(MessageEvent e) {
-		EventBus.getDefault().removeStickyEvent(e);
+		EventBus.getDefault()
+		        .removeStickyEvent(e);
 		showIndefiniteSnackbar(e.getMessage());
 	}
 	//------------------------------------------------
@@ -162,8 +163,23 @@ public abstract class AppBarActivity extends AppCompatActivity {
 
 
 	private void showIndefiniteSnackbar(@StringRes int message) {
-		Snackbar.make(getBinding().getRoot(), message, Snackbar.LENGTH_INDEFINITE)
-		        .show();
+		dismissSnackbar();
+		mSnackbar = Snackbar.make(getBinding().getRoot(), message, Snackbar.LENGTH_INDEFINITE)
+		                    .setAction(android.R.string.ok, mSnackbarCloseListener);
+		mSnackbar.show();
 	}
 
+	private @Nullable Snackbar mSnackbar;
+	private View.OnClickListener mSnackbarCloseListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			dismissSnackbar();
+		}
+	};
+
+	private void dismissSnackbar() {
+		if (mSnackbar != null && mSnackbar.isShown()) {
+			mSnackbar.dismiss();
+		}
+	}
 }

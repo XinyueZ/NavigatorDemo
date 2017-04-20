@@ -7,10 +7,10 @@ Show demo how we navigate in Android App generally.
 ### Version Change
 
 [v0.2.4](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.4)
-- Support non-wifi context-handling
-> Idea of context of non-wifi is that the app should not loading feeds if the cell-network provides internet.
-1. App uses last cached data like "offline".
-2. App compare with last loading-time, if < 5 mins then loading from net instead "offline".
+- Support context-handling of feeds-loading
+> Idea of context of non-wifi (slow mobile network as well) is that the app should not load feeds under some conditions.
+1. App uses last cached data like "offline" if device is in non-wifi or slow mobile network. See switch-cases in ```DsRepository```.
+2. App compares with last loading-time. When the time < 5 minutes then try to load *online* instead *offline*, this happens when the mobile network is *fast*.
 3. App saves last loaded data as cache data.
 4. Added ```onTextMessage``` in ```EntryLoadedCallback``` so that presenter can post UI text-message if repository will be changed.
 
