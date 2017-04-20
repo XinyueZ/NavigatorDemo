@@ -23,14 +23,16 @@ import android.support.v4.content.SharedPreferencesCompat;
 
 import com.demo.navigator.R;
 import com.demo.navigator.app.App;
-import com.demo.navigator.utils.LL;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import static android.net.ConnectivityManager.TYPE_WIFI;
+import static com.demo.navigator.utils.NetworkUtils.CONNECTION_FAST;
+import static com.demo.navigator.utils.NetworkUtils.CONNECTION_ROAMING;
+import static com.demo.navigator.utils.NetworkUtils.CONNECTION_SLOW;
+import static com.demo.navigator.utils.NetworkUtils.CONNECTION_WIFI;
 import static com.demo.navigator.utils.NetworkUtils.getCurrentNetworkType;
 import static com.demo.navigator.utils.NetworkUtils.isAirplaneModeOn;
 import static com.demo.navigator.utils.NetworkUtils.isOnline;
@@ -39,6 +41,8 @@ import static com.demo.navigator.utils.NetworkUtils.isOnline;
 @Singleton
 public class DsRepository implements DsSource {
 
+	static final String PRE_KEY_MENU = "menu";
+	private static final String PRE_KEY_EXPIRATION = "expiration";
 	private final App mApp;
 	private final DsSource mRemoteDs;
 	private final DsSource mLocalDs;
@@ -52,33 +56,51 @@ public class DsRepository implements DsSource {
 
 	@Override
 	public void loadEntry(@NonNull EntryLoadedCallback callback) {
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mApp);
-		SharedPreferences.Editor editor = preferences.edit();
 		if (isAirplaneModeOn(mApp) || !isOnline(mApp)) {
-			mLocalDs.loadEntry(callback);
-			callback.onTextMessage(R.string.offline);
+			callOffline(callback);
 		} else {
-			if (getCurrentNetworkType(mApp) != TYPE_WIFI) {
-				mLocalDs.loadEntry(callback);
-				callback.onTextMessage(R.string.mobile_network);
-				long expiration = preferences.getLong("expiration", 0);
-				if (System.currentTimeMillis() > expiration) {
-					try {
-						mRemoteDs.loadEntry(callback);
-						editor.putLong("expiration", System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5));
-						SharedPreferencesCompat.EditorCompat.getInstance()
-						                                    .apply(editor);
-						callback.onTextMessage(R.string.forced_loading);
-					} catch (Exception ignored) {
-						LL.e(ignored.toString());
+			byte currentNetworkType = getCurrentNetworkType(mApp);
+			switch (currentNetworkType) {
+				case CONNECTION_WIFI:
+					callOnline(callback);
+					break;
+				default:
+					switch (currentNetworkType) {
+						case CONNECTION_ROAMING:
+						case CONNECTION_SLOW:
+							callOffline(callback);
+							break;
+						case CONNECTION_FAST:
+							callInFastMobileNetwork(callback);
+							break;
 					}
-				}
-			} else {
-				mRemoteDs.loadEntry(callback);
-				editor.putLong("expiration", System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5));
-				SharedPreferencesCompat.EditorCompat.getInstance()
-				                                    .apply(editor);
+					break;
 			}
 		}
+	}
+
+	private void callInFastMobileNetwork(@NonNull EntryLoadedCallback callback) {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mApp);
+		mLocalDs.loadEntry(callback);
+		callback.onTextMessage(R.string.mobile_network);
+		long expiration = preferences.getLong(PRE_KEY_EXPIRATION, 0);
+		if (expiration > 0 && System.currentTimeMillis() > expiration) {
+			callOnline(callback);
+			callback.onTextMessage(R.string.forced_loading);
+		}
+	}
+
+	private void callOnline(@NonNull EntryLoadedCallback callback) {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mApp);
+		SharedPreferences.Editor editor = preferences.edit();
+		mRemoteDs.loadEntry(callback);
+		editor.putLong("expiration", System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5));
+		SharedPreferencesCompat.EditorCompat.getInstance()
+		                                    .apply(editor);
+	}
+
+	private void callOffline(@NonNull EntryLoadedCallback callback) {
+		mLocalDs.loadEntry(callback);
+		callback.onTextMessage(R.string.offline);
 	}
 }

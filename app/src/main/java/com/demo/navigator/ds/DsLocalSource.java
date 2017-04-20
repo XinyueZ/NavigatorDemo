@@ -38,7 +38,7 @@ public final class DsLocalSource implements DsSource {
 		          .map(new Function<SharedPreferences, Entry>() {
 			          @Override
 			          public Entry apply(@NonNull SharedPreferences sharedPreferences) throws Exception {
-				          String json = sharedPreferences.getString("menu", null);
+				          String json = sharedPreferences.getString(DsRepository.PRE_KEY_MENU, null);
 				          NavigationEntries navigationEntries = mApp.getGson()
 				                                                    .fromJson(json, NavigationEntries.class);
 				          return new Entry("root",
