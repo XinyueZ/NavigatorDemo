@@ -16,7 +16,7 @@ import com.demo.navigator.customtabs.CustomTabsActivityHelper;
 
 public final class CustomTabUtils {
 	private static final BrowserFallback FALLBACK = new BrowserFallback();
-	private static final CustomTabsActivityHelper HELPER = new CustomTabsActivityHelper();
+	public static final CustomTabsActivityHelper HELPER = new CustomTabsActivityHelper();
 	private static final int BAR_COLOR = ContextCompat.getColor(App.Instance, R.color.colorPrimary);
 
 	public static void bind(Context cxt, @NonNull String... urls) {
