@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0-alpha02'
+        classpath 'com.android.tools.build:gradle:3.1.0-alpha03'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -30,13 +30,13 @@ ext {
     //App libs
     bus = "3+"
     dagger = "2+"
-    gson = "2.8.0"
+    gson = "2+"
     junit = "4.12"
     retrofit = "2.1.0"
     rxandroid = "2.0.1"
     multidexVersion = "1.0.1"
     rxandroidAdapter = "1.0.0"
-    appCompatVersion = "27.0.0"
+    appCompatVersion = "27.0.1"
     smoothprogressbar = "1.0.0"
 
     //Test libs
