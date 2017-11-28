@@ -36,7 +36,7 @@ ext {
     rxandroid = "2.0.1"
     multidexVersion = "1.0.1"
     rxandroidAdapter = "1.0.0"
-    appCompatVersion = "27.0.1"
+    appCompatVersion = "27.0.2"
     smoothprogressbar = "1.0.0"
 
     //Test libs
