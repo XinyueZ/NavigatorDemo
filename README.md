@@ -3,6 +3,14 @@ Navigator Demo
 Show demo how we navigate in Android App generally.
 
  ![logo](photo/ic_launcher.png)
+ 
+- Master:
+
+ [![Build Status](https://travis-ci.org/XinyueZ/NavigatorDemo.svg?branch=master)](https://travis-ci.org/XinyueZ/NavigatorDemo)
+
+- Develop:
+
+ [![Build Status](https://travis-ci.org/XinyueZ/NavigatorDemo.svg?branch=dev)](https://travis-ci.org/XinyueZ/NavigatorDemo)
 
 ### Version Change
 
