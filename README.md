@@ -15,6 +15,10 @@ Show demo how we navigate in Android App generally.
 ### Version Change
 
 [v0.2.4](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.4)
+
+ [![Build Status](https://travis-ci.org/XinyueZ/NavigatorDemo.svg?branch=v0.2.4)](https://travis-ci.org/XinyueZ/NavigatorDemo)
+
+
 - Support context-handling of feeds-loading
 > Idea of context of non-wifi (slow mobile network as well) is that the app should not load feeds under some conditions.
 1. App uses last cached data like "offline" if device is in non-wifi or slow mobile network. See switch-cases in ```DsRepository```.
