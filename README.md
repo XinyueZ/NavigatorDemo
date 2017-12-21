@@ -27,6 +27,10 @@ Show demo how we navigate in Android App generally.
 4. Added ```onTextMessage``` in ```EntryLoadedCallback``` so that presenter can post UI text-message if repository will be changed.
 
 [v0.2.3](https://github.com/XinyueZ/NavigatorDemo/releases/tag/v0.2.3)
+
+ [![Build Status](https://travis-ci.org/XinyueZ/NavigatorDemo.svg?branch=v0.2.3)](https://travis-ci.org/XinyueZ/NavigatorDemo)
+
+
 > Offline is available.
 
 - Support showing menu if offline. 
