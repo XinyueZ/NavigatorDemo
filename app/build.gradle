@@ -54,70 +54,70 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //UITest
-    androidTestCompile("com.android.support.test:rules:${testRules}", {
+    androidTestImplementation("com.android.support.test:rules:${testRules}", {
         exclude group: 'com.android.support'
     })
-    androidTestCompile("com.android.support.test:runner:${testRunner}", {
+    androidTestImplementation("com.android.support.test:runner:${testRunner}", {
         exclude group: 'com.android.support'
     })
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${espresso}", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${espresso}", {
         exclude group: 'com.android.support'
     })
-    androidTestCompile("com.android.support.test.espresso:espresso-web:${espresso}", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-web:${espresso}", {
         exclude group: 'com.android.support'
     })
-    compile("com.android.support.test.espresso:espresso-idling-resource:${espresso}", {
+    implementation("com.android.support.test.espresso:espresso-idling-resource:${espresso}", {
         exclude group: 'com.android.support'
     })
-    androidTestCompile("com.android.support.test.espresso:espresso-contrib:${espresso}", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${espresso}", {
         exclude group: 'com.android.support'
     })
-    androidTestCompile("com.android.support.test.espresso:espresso-intents:${espresso}", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-intents:${espresso}", {
         exclude group: 'com.android.support'
     })
 
     //UnitTest
-    testCompile "junit:junit:${junit}"
-    androidTestCompile "org.mockito:mockito-core:${mockitoVersion}"
-    androidTestCompile "com.google.dexmaker:dexmaker:${dexmakerVersion}"
-    androidTestCompile "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}"
-    testCompile "junit:junit:${junit}"
-    testCompile "org.mockito:mockito-all:${mockitoVersion}"
-    testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+    testImplementation "junit:junit:${junit}"
+    androidTestImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    androidTestImplementation "com.google.dexmaker:dexmaker:${dexmakerVersion}"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}"
+    testImplementation "junit:junit:${junit}"
+    testImplementation "org.mockito:mockito-all:${mockitoVersion}"
+    testImplementation "org.hamcrest:hamcrest-all:${hamcrestVersion}"
 
     //Support libraries
-    compile "com.android.support:design:${appCompatVersion}"
-    compile "com.android.support:multidex:${multidexVersion}"
-    compile "com.android.support:customtabs:${appCompatVersion}"
-    compile "com.android.support:appcompat-v7:${appCompatVersion}"
-    compile "com.android.support:support-compat:${appCompatVersion}"
-    compile "com.android.support:recyclerview-v7:${appCompatVersion}"
-    compile "com.android.support:support-core-ui:${appCompatVersion}"
-    compile "com.android.support:support-fragment:${appCompatVersion}"
-    compile "com.android.support:support-core-utils:${appCompatVersion}"
-    compile "com.android.support:support-annotations:${appCompatVersion}"
-    compile "com.android.support:support-media-compat:${appCompatVersion}"
+    implementation "com.android.support:design:${appCompatVersion}"
+    implementation "com.android.support:multidex:${multidexVersion}"
+    implementation "com.android.support:customtabs:${appCompatVersion}"
+    implementation "com.android.support:appcompat-v7:${appCompatVersion}"
+    implementation "com.android.support:support-compat:${appCompatVersion}"
+    implementation "com.android.support:recyclerview-v7:${appCompatVersion}"
+    implementation "com.android.support:support-core-ui:${appCompatVersion}"
+    implementation "com.android.support:support-fragment:${appCompatVersion}"
+    implementation "com.android.support:support-core-utils:${appCompatVersion}"
+    implementation "com.android.support:support-annotations:${appCompatVersion}"
+    implementation "com.android.support:support-media-compat:${appCompatVersion}"
 
     //Google libs
-    compile "de.greenrobot:eventbus:${bus}"
-    compile "com.google.code.gson:gson:${gson}"
-    compile "com.google.dagger:dagger:${dagger}"
+    implementation "de.greenrobot:eventbus:${bus}"
+    implementation "com.google.code.gson:gson:${gson}"
+    implementation "com.google.dagger:dagger:${dagger}"
     annotationProcessor "com.google.dagger:dagger-compiler:${dagger}"
 
     //Rx for android
-    compile "io.reactivex.rxjava2:rxandroid:${rxandroid}"
-    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${rxandroidAdapter}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxandroid}"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${rxandroidAdapter}"
     //Instead this official adapter, more info
     // see https://github.com/JakeWharton/retrofit2-rxjava2-adapter
     // see http://stackoverflow.com/questions/35233161/illegalargumentexception-could-not-locate-call-adapter-for-rx-observable-rxjava
     //compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //Official Retrofit
-    compile "com.squareup.retrofit2:retrofit:${retrofit}"
-    compile "com.squareup.retrofit2:retrofit-mock:${retrofit}"
-    compile "com.squareup.retrofit2:converter-gson:${retrofit}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
+    implementation "com.squareup.retrofit2:retrofit-mock:${retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
 
-    compile "com.github.castorflex.smoothprogressbar:library:${smoothprogressbar}"
+    implementation "com.github.castorflex.smoothprogressbar:library:${smoothprogressbar}"
 }
