@@ -56,7 +56,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    annotationProcessor "com.android.databinding:compiler:${gradle_version}"
 
     //UITest
     androidTestImplementation("com.android.support.test:rules:${testRules}", {
