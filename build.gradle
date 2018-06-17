@@ -34,7 +34,7 @@ ext {
     gson = "2+"
     junit = "4.12"
     retrofit = "2.1.0"
-    rxandroid = "2.0.1"
+    rxandroid = "2.0.2"
     multidexVersion = "1.0.1"
     rxandroidAdapter = "1.0.0"
     appCompatVersion = "27.1.1"
